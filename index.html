@@ -643,6 +643,272 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
 .cmain { grid-template-columns: 44px minmax(0, 1fr); }
 .ctx b { overflow-wrap: break-word; font-size: 15.5px; }
 
+
+/* ==========================================================================
+   v2d · Comparador por proyectos: oferta contraída arriba, rueda chica, historial en el menú
+   ========================================================================== */
+@media (max-width: 420px) { .tabbar { gap: 2px; padding: 5px; } .tab-item { font-size: 11px; } }
+.cmp { display: grid; gap: 16px; min-width: 0; }
+.cmp > * { min-width: 0; }
+.readcard { display: flex; align-items: center; gap: 16px; }
+.readcard b { font-size: 17px; }
+.spin { width: 28px; height: 28px; flex: none; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--primary); animation: spin 800ms linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.offform { display: grid; gap: 12px; margin-top: 16px; }
+.offdrop { margin-top: 16px; }
+.offcard { padding: 14px 16px; }
+.offcard summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; min-height: 52px; }
+.offcard summary::-webkit-details-marker { display: none; }
+.chev { transition: transform 200ms var(--ease-out); }
+.offcard > summary .chev { margin-left: auto; color: var(--soft); flex: none; }
+.offcard[open] > summary .chev, .why[open] > summary .chev, .rankacc[open] > summary .chev, .subacc[open] > summary .chev { transform: rotate(180deg); }
+.oico, .othumb { width: 46px; height: 46px; border-radius: 14px; flex: none; }
+.oico { background: var(--tint); color: var(--primary); display: grid; place-items: center; }
+.othumb { object-fit: cover; border: 1px solid var(--line); }
+.offs { display: grid; gap: 1px; min-width: 0; }
+.offs small { color: var(--soft); font-size: 13px; font-weight: 600; }
+.offs b { font-size: 16.5px; font-weight: 800; line-height: 1.25; }
+.offbody { display: grid; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.subacc { border: 1px solid var(--line); border-radius: 14px; padding: 0 14px; background: var(--bg); }
+.subacc summary { list-style: none; cursor: pointer; display: flex; align-items: center; min-height: 46px; font-weight: 700; font-size: 15px; }
+.subacc summary::-webkit-details-marker { display: none; }
+.subacc summary .chev { margin-left: auto; color: var(--soft); }
+.subacc .orig { padding: 0 0 14px; display: grid; gap: 6px; font-size: 14px; color: var(--ink); }
+.subacc .orig h4 { margin: 8px 0 0; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--primary); }
+.subacc .orig ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.subacc .orig p { margin: 0; color: var(--soft); font-size: 13px; }
+.rqh { font-size: 15px; font-weight: 800; margin: 2px 0 0; }
+.rqh small { font-weight: 500; color: var(--soft); font-size: 13px; margin-left: 6px; }
+.rqs { display: flex; flex-wrap: wrap; gap: 8px; }
+.rq { display: inline-flex; align-items: center; border-radius: 99px; border: 1.5px solid var(--line); overflow: hidden; max-width: 100%; }
+.rq.exc { background: var(--tint); border-color: var(--primary); }
+.rq.des { border-style: dashed; background: var(--surface); }
+.rq .l { min-height: 40px; padding: 0 4px 0 14px; font-weight: 700; font-size: 14px; text-align: left; }
+.rq.fix .l { padding-right: 14px; cursor: default; }
+.rq .x { width: 36px; min-height: 40px; display: grid; place-items: center; color: var(--soft); }
+.rq .x svg { width: 14px; height: 14px; }
+@media (hover: hover) and (pointer: fine) { .rq .x:hover { color: var(--red); } }
+.refine .ask-row { background: var(--bg); border: 1.5px solid var(--line); }
+.refine .ask-row input { color: var(--ink); }
+.refine .ask-row input::placeholder { color: var(--soft); }
+.refine .ask-row:focus-within { outline-color: var(--focus); }
+.offact { display: flex; flex-wrap: wrap; gap: 8px; }
+.wcard { padding: 16px 16px 14px; }
+.wh { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.wh h2 { font-size: 18px; }
+.wh .count { color: var(--soft); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.wheel { position: relative; height: 158px; overflow: hidden; touch-action: pan-y; cursor: grab; margin-top: 6px; border-radius: 16px; }
+.wheel:active { cursor: grabbing; }
+.wheel:focus-visible { outline-offset: 0; }
+.wc { position: absolute; left: 50%; top: 8px; width: min(72%, 270px); display: grid; gap: 10px; text-align: left; padding: 12px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); will-change: transform; user-select: none; -webkit-user-select: none; }
+.wheel.ready .wc { transition: transform 480ms var(--ease-drawer), opacity 300ms ease, box-shadow 300ms ease; }
+.wc[aria-current="true"] { border-color: var(--primary); box-shadow: 0 16px 30px -16px rgba(11, 110, 138, .6); }
+.wc.nok { background: color-mix(in srgb, var(--red-bg) 45%, var(--surface)); }
+.wtop { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.wtop .avatar { width: 40px; height: 40px; font-size: 14px; }
+.wnm b { display: block; font-size: 15px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wnm small { display: block; color: var(--soft); font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wpct b { font-size: 26px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.wpct b i { font-size: 14px; font-style: normal; }
+.wfoot { display: flex; gap: 6px; flex-wrap: wrap; }
+.wctl { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 8px; }
+.wbtn { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface); display: grid; place-items: center; color: var(--ink); transition: transform 140ms var(--ease-out), border-color 160ms ease; }
+.wbtn:active { transform: scale(0.94); }
+@media (hover: hover) and (pointer: fine) { .wbtn:hover { border-color: var(--primary); color: var(--primary); } }
+.wdots { display: flex; align-items: center; gap: 7px; min-width: 60px; justify-content: center; }
+.wdots i { width: 8px; height: 8px; border-radius: 99px; background: var(--line); transition: width 220ms var(--ease-out), background-color 220ms ease; }
+.wdots i.on { width: 22px; background: var(--primary); }
+.cdet { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); display: grid; gap: 10px; }
+.cdh { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.cdh > div { min-width: 0; }
+.cdh b { display: block; font-size: 16.5px; font-weight: 800; line-height: 1.25; }
+.cdh small { display: block; color: var(--soft); font-size: 13px; }
+.why { border: 1px solid var(--line); border-radius: 14px; padding: 0 14px; background: var(--bg); }
+.why summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; min-height: 46px; font-weight: 700; font-size: 14.5px; }
+.why summary::-webkit-details-marker { display: none; }
+.why summary .big { margin-left: auto; font-size: 20px; font-weight: 800; color: var(--primary); }
+.why summary .chev { color: var(--soft); }
+.why .crits { margin-top: 0; }
+.why .crit b { font-weight: 700; font-size: 14.5px; }
+.why .note { margin: 0 0 14px; }
+.actions2 { display: flex; gap: 8px; margin: 4px 0 8px; }
+.rankacc { padding: 0 16px; }
+.rankacc summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; min-height: 56px; font-weight: 800; font-size: 17px; }
+.rankacc summary::-webkit-details-marker { display: none; }
+.rankacc summary small { color: var(--soft); font-weight: 600; font-size: 14px; }
+.rankacc summary .chev { margin-left: auto; color: var(--soft); }
+.rankacc .flist { box-shadow: none; margin-bottom: 14px; }
+/* Historial (menú de hamburguesa) */
+.drawer { position: fixed; z-index: 60; top: 0; bottom: 0; left: 0; width: min(90vw, 380px); background: var(--surface); border-right: 1px solid var(--line); padding: 16px 14px calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-102%); visibility: hidden; transition: transform 320ms var(--ease-drawer), visibility 0s linear 320ms; overflow-y: auto; display: grid; gap: 14px; align-content: start; }
+.drawer.open { transform: none; visibility: visible; transition: transform 320ms var(--ease-drawer), visibility 0s; }
+.dscrim { position: fixed; inset: 0; z-index: 55; background: rgba(8, 20, 28, .5); opacity: 0; pointer-events: none; transition: opacity 240ms ease; }
+.dscrim.show { opacity: 1; pointer-events: auto; }
+.dh { display: flex; align-items: center; justify-content: space-between; }
+.dh h2 { font-size: 21px; font-weight: 800; }
+.hlist { display: grid; gap: 8px; }
+.hitem { display: grid; gap: 3px; text-align: left; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 16px; background: var(--surface); transition: transform 140ms var(--ease-out), border-color 160ms ease, background-color 160ms ease; }
+.hitem:active { transform: scale(0.99); }
+.hitem.cur { border-color: var(--primary); background: var(--tint); }
+.ht { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.ht b { font-size: 15px; line-height: 1.25; }
+.hitem small { color: var(--soft); font-size: 13px; font-weight: 600; }
+@media (hover: hover) and (pointer: fine) { .hitem:hover { border-color: var(--primary); } }
+
+/* ==========================================================================
+   v2e · Reclutador por fases, Candidatos A-Z con lupa, historial simple, cierre con conclusión, Cargar con dudas
+   ========================================================================== */
+.toolbar .btn[aria-pressed="true"] { background: var(--tint); border-color: var(--primary); color: var(--primary); }
+/* Reclutador */
+.pcard { display: grid; gap: 12px; }
+.pc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.pc-t { display: grid; gap: 2px; min-width: 0; }
+.pc-t small { color: var(--soft); font-size: 13px; font-weight: 600; }
+.pc-t b { font-size: 19px; font-weight: 800; line-height: 1.25; }
+.fases { display: grid; gap: 12px; }
+.fase { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--fa, var(--primary)); border-radius: var(--radius); padding: 16px 14px 14px; box-shadow: var(--shadow); display: grid; gap: 14px; align-content: start; }
+.fase[data-f="1"] { --fa: var(--primary); }
+.fase[data-f="2"] { --fa: var(--gold-line); }
+.fase[data-f="3"] { --fa: var(--green-line); }
+.fase[data-f="0"] { --fa: var(--red-line); }
+.fh { display: flex; align-items: center; gap: 12px; }
+.fn { width: 38px; height: 38px; flex: none; border-radius: 13px; background: var(--deep); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 17px; }
+.fn.x { background: var(--red); }
+.fn.x svg { width: 18px; height: 18px; }
+.ft { display: grid; flex: 1; min-width: 0; }
+.ft b { font-size: 17px; font-weight: 800; line-height: 1.2; }
+.ft small { color: var(--soft); font-size: 13px; }
+.fc { font-size: 30px; font-weight: 800; letter-spacing: -0.04em; color: var(--fa, var(--primary)); line-height: 1; }
+.stiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.stiles .tile { width: auto; min-width: 0; font-size: 13px; padding: 6px 0 4px; border-radius: 16px; }
+.stiles .tile .ico { width: 60px; height: 60px; border-radius: 20px; }
+.tile.sel .ico { box-shadow: 0 0 0 3px var(--surface), 0 0 0 5.5px var(--c); }
+.tile.sel { color: var(--ink); }
+.fase.fuera .stiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (min-width: 900px) { .fases { grid-template-columns: repeat(3, minmax(0, 1fr)); } .fase.fuera { grid-column: 1 / -1; } .fase.fuera .stiles { grid-template-columns: repeat(auto-fit, minmax(92px, 120px)); } }
+.sec-h .cnt { display: inline-grid; place-items: center; min-width: 28px; height: 28px; padding: 0 8px; border-radius: 99px; background: var(--tint); color: var(--primary); font-size: 15px; vertical-align: 2px; }
+.srows { display: grid; gap: 10px; }
+.srow { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
+.srow .rmain { padding: 14px 14px 10px; }
+.sact { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px 14px 14px; }
+.sact .btn svg { width: 18px; height: 18px; }
+.subt { margin: 14px 2px 8px; }
+.agenda { display: grid; gap: 10px; margin-bottom: 4px; }
+.cal { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 8px; scrollbar-width: none; scroll-snap-type: x proximity; }
+.cal::-webkit-scrollbar { display: none; }
+.cd { flex: none; width: 54px; display: grid; justify-items: center; gap: 1px; padding: 8px 0 6px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--surface); font-weight: 700; scroll-snap-align: start; transition: transform 140ms var(--ease-out); }
+.cd:active { transform: scale(0.95); }
+.cd small { color: var(--soft); font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; }
+.cd b { font-size: 20px; line-height: 1.2; }
+.cd i { width: 6px; height: 6px; border-radius: 50%; background: transparent; }
+.cd.has i { background: var(--primary); }
+.cd[aria-pressed="true"] { background: var(--deep); border-color: var(--deep); color: #fff; }
+.cd[aria-pressed="true"] small { color: #cfe6ee; }
+.cd[aria-pressed="true"].has i { background: #fff; }
+.alist { display: grid; gap: 8px; }
+.aitem { display: flex; align-items: center; gap: 12px; text-align: left; padding: 12px 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 16px; width: 100%; }
+.aitem > svg { margin-left: auto; color: var(--soft); }
+.ah { font-size: 18px; font-weight: 800; color: var(--primary); min-width: 54px; }
+.at { display: grid; min-width: 0; }
+.at b { font-size: 15.5px; }
+.at small { color: var(--soft); font-size: 13px; }
+/* Candidatos */
+.searchbar { position: relative; }
+.searchbar > svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--soft); pointer-events: none; }
+.searchbar input { width: 100%; min-height: 52px; padding: 0 16px 0 44px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font-size: 16px; }
+.searchbar input:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; border-color: var(--primary); }
+.clwrap { min-width: 0; }
+#lstripw { position: sticky; top: var(--topbar-h); z-index: 20; background: var(--bg); margin: 0 -16px; padding: 0 16px; }
+.lstrip { display: flex; gap: 6px; overflow-x: auto; padding: 8px 0; scrollbar-width: none; }
+.lstrip::-webkit-scrollbar { display: none; }
+.lstrip button { flex: none; min-width: 38px; height: 38px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface); font-weight: 800; font-size: 14px; color: var(--ink); transition: transform 140ms var(--ease-out), border-color 160ms ease; }
+.lstrip button:active { transform: scale(0.93); }
+@media (hover: hover) and (pointer: fine) { .lstrip button:hover { border-color: var(--primary); color: var(--primary); } }
+@media (min-width: 720px) { #lstripw { margin: 0; padding: 0; } }
+.lh { display: flex; align-items: baseline; gap: 8px; margin: 14px 2px 8px; font-size: 16px; font-weight: 800; color: var(--primary); scroll-margin-top: calc(var(--topbar-h) + 64px); }
+.lh small { color: var(--soft); font-weight: 600; font-size: 13px; }
+/* Oferta original */
+.othwrap { position: relative; flex: none; display: block; width: 46px; height: 46px; border-radius: 14px; }
+.opaper { width: 46px; height: 46px; border-radius: 12px; flex: none; background: #fff; border: 1px solid var(--line); display: grid; align-content: center; gap: 4px; padding: 8px; }
+.opaper i { display: block; height: 3px; border-radius: 2px; background: #b9c6d2; }
+.opaper i:first-child { width: 62%; background: var(--primary); }
+.opaper i:nth-child(3) { width: 82%; }
+.opop { display: none; position: absolute; z-index: 40; left: 0; top: calc(100% + 8px); width: min(340px, 78vw); max-height: 340px; overflow: hidden; border-radius: 14px; background: #fff; box-shadow: 0 24px 50px -18px rgba(8, 20, 28, .55); pointer-events: none; }
+.opop img { display: block; width: 100%; }
+.opop::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 60px; background: linear-gradient(transparent, #fff); }
+@media (hover: hover) and (pointer: fine) { .othwrap:hover .opop { display: block; } .othwrap { cursor: zoom-in; } }
+.lab > span small { display: block; }
+.ofh { align-content: start; background: #fff; color: #14202e; border: 1px solid var(--line); border-radius: 12px; padding: 16px; box-shadow: var(--shadow); font-size: 13.5px; display: grid; gap: 6px; }
+.ofh small { color: #5d6b7a; }
+.ofh h4 { margin: 0; font-size: 16px; }
+.ofh h5 { margin: 8px 0 0; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #0b6e8a; }
+.ofh ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.ofh .raw { margin: 0; white-space: pre-wrap; }
+.obig { width: 100%; border-radius: 12px; border: 1px solid var(--line); }
+.mlist, .logl { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 13.5px; color: var(--soft); }
+.logl b { color: var(--ink); font-weight: 700; }
+.note.warn { background: var(--gold-bg); color: var(--ink); }
+.recrow { display: flex; flex-wrap: wrap; gap: 8px; }
+/* Cierre del proceso */
+.pfoot { display: grid; gap: 14px; }
+.pfoot .btn.primary { width: 100%; min-height: 50px; }
+.concl { border-left: 4px solid var(--primary); background: var(--tint); border-radius: 14px; padding: 14px 16px; font-weight: 600; line-height: 1.5; }
+.concl small { display: block; color: var(--soft); margin-bottom: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
+/* Al abrir un proceso del historial */
+.pick2 { display: grid; gap: 12px; }
+.pk { display: flex; align-items: center; gap: 16px; text-align: left; padding: 18px; border-radius: 22px; color: #fff; background: linear-gradient(135deg, var(--deep), var(--primary)); box-shadow: 0 14px 26px -16px rgba(11, 110, 138, .8); transition: transform 160ms var(--ease-out), box-shadow 200ms ease; }
+.pk.alt { background: linear-gradient(135deg, #0b6e8a, #3a9db8); }
+.pk:active { transform: scale(0.98); }
+.pk .pi { width: 54px; height: 54px; border-radius: 18px; background: rgba(255, 255, 255, .16); display: grid; place-items: center; flex: none; }
+.pk .pi svg { width: 28px; height: 28px; }
+.pk b { display: block; font-size: 21px; font-weight: 800; letter-spacing: -0.01em; }
+.pk .d { display: block; font-size: 14px; opacity: .9; margin-top: 2px; font-weight: 500; line-height: 1.35; }
+@media (hover: hover) and (pointer: fine) { .pk:hover { transform: translateY(-2px); box-shadow: 0 20px 30px -16px rgba(11, 110, 138, .9); } }
+/* Cargar: dudas */
+.fmini { display: grid; gap: 1px; padding: 10px 12px; border-radius: 12px; background: var(--bg); }
+.fmini b { font-size: 15.5px; }
+.fmini span { color: var(--ink); font-size: 14px; }
+.fmini small { color: var(--soft); font-size: 12.5px; }
+.dq { display: grid; gap: 10px; padding: 12px; border-radius: 14px; background: var(--gold-bg); }
+.dq p { margin: 0; font-size: 14.5px; font-weight: 600; }
+.dq p b { color: var(--gold); text-transform: uppercase; letter-spacing: .05em; font-size: 12px; margin-right: 6px; }
+.dqf { display: grid; gap: 8px; }
+.dqo { display: flex; flex-wrap: wrap; gap: 8px; }
+.dres { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 13.5px; font-weight: 600; color: var(--green); }
+.dres svg { width: 16px; height: 16px; }
+.acc2 { padding: 0 16px; }
+.acc2 summary { list-style: none; cursor: pointer; display: flex; align-items: center; min-height: 56px; font-weight: 800; font-size: 16px; }
+.acc2 summary::-webkit-details-marker { display: none; }
+.acc2 summary .chev { margin-left: auto; color: var(--soft); }
+.acc2[open] summary .chev { transform: rotate(180deg); }
+.acc2 > .sub, .acc2 > form { padding-bottom: 16px; margin-top: 0; }
+
+.wtop { grid-template-columns: 36px minmax(0, 1fr) auto; gap: 8px; }
+.wtop .avatar { width: 36px; height: 36px; font-size: 13px; }
+.wnm b { font-size: 14.5px; }
+.wpct b { font-size: 22px; }
+
+/* v2f · Reclutador y Comparador: juntos, al centro y más grandes que el resto */
+.icon-btn.on { background: var(--tint); color: var(--primary); }
+.tabbar .tab-item.big { flex: 1.5; min-height: 66px; gap: 4px; font-size: 13px; font-weight: 800; color: var(--primary); background: var(--tint); border: 1.5px solid color-mix(in srgb, var(--primary) 28%, transparent); border-radius: 24px; }
+.tabbar .tab-item.big svg { width: 27px; height: 27px; }
+.tabbar .tab-item.big[aria-current="page"] { background: linear-gradient(135deg, var(--deep), var(--primary)); color: #fff; border-color: transparent; box-shadow: 0 10px 20px -10px rgba(11, 110, 138, .85); }
+@media (min-width: 1100px) { .tabbar .tab-item.big { flex: none; min-height: 58px; flex-direction: row; justify-content: flex-start; gap: 12px; padding: 0 16px; font-size: 16px; border-radius: 16px; } .tabbar .tab-item.big svg { width: 24px; height: 24px; } }
+@media (max-width: 420px) { .tabbar .tab-item.big { font-size: 12.5px; } .tabbar .tab-item.big svg { width: 26px; height: 26px; } }
+
+/* v2g · barra compacta de cierre y formulario de nuevo proceso */
+.cbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 12px; padding: 12px 14px; border-radius: 20px; background: var(--deep); color: #fff; box-shadow: 0 12px 24px -16px rgba(14, 58, 75, .7); }
+.cb-t { display: grid; gap: 1px; min-width: 0; }
+.cb-t b { font-size: 15.5px; font-weight: 800; line-height: 1.25; }
+.cb-t small { color: rgba(255, 255, 255, .78); font-size: 12.5px; font-weight: 600; line-height: 1.35; }
+.cb-t small.cl { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cbar .btn.primary { background: #fff; border-color: #fff; color: var(--deep); min-height: 42px; }
+.cbar .btn.primary:hover { background: #e8f3f7; color: var(--deep); }
+.cb-m { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; }
+.cb-m button { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 0 12px; border-radius: 99px; background: rgba(255, 255, 255, .14); color: #fff; font-size: 13px; font-weight: 700; transition: background-color 160ms ease, transform 140ms var(--ease-out); }
+.cb-m button:active { transform: scale(0.96); }
+.cb-m button svg { width: 15px; height: 15px; }
+@media (hover: hover) and (pointer: fine) { .cb-m button:hover { background: rgba(255, 255, 255, .26); } }
+.cbar.closed { background: linear-gradient(135deg, var(--deep), #134f66); }
 </style>
 </head>
 <body>
@@ -681,16 +947,23 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
     <symbol id="i-chevr" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
     <symbol id="i-in" viewBox="0 0 24 24"><path d="M5 10v9M5 5.5v.01M10 19v-9M10 14a4 4 0 018 0v5"/></symbol>
     <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3h8l5 5v13H7zM15 3v5h5"/></symbol>
+      <symbol id="i-chevl" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 21V4M6 5h11l-2 4 2 4H6"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3.5 5h17l-6.5 8v6l-4 2v-8z"/></symbol>
+    <symbol id="i-compare" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/><path d="M12 4v6M12 14v6M4 12h6M14 12h6"/></symbol>
   </defs>
 </svg>
 
 <div class="ribbon" role="note">DEMO: datos de ejemplo, no se envía nada a nadie</div>
 
 <header class="topbar">
+  <button class="icon-btn" data-act="hist-open" aria-label="Abrir el historial de procesos" aria-haspopup="dialog"><svg class="i" aria-hidden="true"><use href="#i-menu"/></svg></button>
   <a class="brand" href="#" data-act="home" aria-label="gladibu recruitment, ir al inicio">
     <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#0b6e8a"/><circle cx="15" cy="15" r="6.5" fill="none" stroke="#fff" stroke-width="3"/><path d="M20 20l6 6" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
     <b>gladibu</b><span>recruitment</span>
   </a>
+  <button class="icon-btn" id="setBtn" data-act="go-config" aria-label="Ajustes"><svg class="i" aria-hidden="true"><use href="#i-sliders"/></svg></button>
   <button class="icon-btn" id="themeBtn" data-act="theme" aria-label="Cambiar entre modo claro y oscuro"></button>
 </header>
 
@@ -698,6 +971,8 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
   <nav class="tabbar" id="tabbar" aria-label="Menú principal"></nav>
   <main class="main" id="main" tabindex="-1"></main>
 </div>
+<div class="dscrim" id="dscrim" data-act="hist-close"></div>
+<aside class="drawer" id="drawer" aria-label="Historial de procesos" aria-hidden="true"></aside>
 <div id="layer"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -802,7 +1077,31 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
       perfil: "Técnico con experiencia en aserraderos y servicios industriales.",
       trabajos: [
         j("Empresa Maderera Araucanía", "Auxiliar de seguridad", "2023-04", "2025-12", "Revisó extintores y señalética en tres plantas."),
-        j("Servicios de Aseo Industrial Sur", "Operario", "2021-05", "2023-03", "Cumplió turnos de limpieza industrial con protocolos de seguridad.")] }
+        j("Servicios de Aseo Industrial Sur", "Operario", "2021-05", "2023-03", "Cumplió turnos de limpieza industrial con protocolos de seguridad.")] },
+    { id: "c11", nombre: "Rodrigo Aguilera Soto", cargo: "Ingeniero de O&M fotovoltaico", ciudad: "Copiapó", prof: "Electricidad",
+      estudios: "Universitario", titulo: "Ingeniería Civil Eléctrica", inst: "Universidad del Desierto", egreso: 2016,
+      skills: ["Operación de plantas solares", "Mantenimiento predictivo", "Elaboración de procedimientos de O&M"], idiomas: ["Español", "Inglés intermedio"], licencia: true,
+      disp: "30 días", renta: 2300000, tel: "+56 9 5550 0111", correo: "rodrigo.aguilera@ejemplo.test", linkedin: "linkedin.com/in/rodrigo-aguilera-ejemplo",
+      estado: "revisar", perfil: "Ingeniero con diez años en plantas de energía; opera una planta fotovoltaica de gran escala y redacta sus procedimientos de mantenimiento.",
+      trabajos: [
+        j("Parque Solar Atacama Norte", "Ingeniero de O&M", "2020-03", null, "Operó una planta de gran escala y redactó los procedimientos de mantenimiento."),
+        j("Montajes Eléctricos del Norte", "Ingeniero de proyectos", "2016-09", "2020-02", "Supervisó la puesta en marcha de dos subestaciones.")] },
+    { id: "c12", nombre: "Paula Herrera Mena", cargo: "Ingeniera de mantenimiento", ciudad: "Antofagasta", prof: "Electricidad",
+      estudios: "Universitario", titulo: "Ingeniería Mecánica", inst: "Universidad Costa Sur", egreso: 2018,
+      skills: ["Mantenimiento de inversores", "Análisis de fallas", "Gestión de contratistas"], idiomas: ["Español", "Inglés básico"], licencia: true,
+      disp: "15 días", renta: 1950000, tel: "+56 9 5550 0112", correo: "paula.herrera@ejemplo.test", linkedin: "linkedin.com/in/paula-herrera-ejemplo",
+      estado: "contacto", perfil: "Ingeniera con ocho años en mantenimiento; coordina contratistas y análisis de fallas en plantas solares.",
+      trabajos: [
+        j("Solar del Loa", "Ingeniera de mantenimiento", "2021-08", null, "Coordinó mantenciones de inversores y análisis de fallas en dos plantas."),
+        j("Servicios Industriales Loa", "Ingeniera junior", "2018-09", "2021-07", "Apoyó planes de mantenimiento mecánico.")] },
+    { id: "c13", nombre: "Tomás Ibáñez Cruz", cargo: "Ingeniero eléctrico de proyectos", ciudad: "Santiago", prof: "Electricidad",
+      estudios: "Universitario", titulo: "Ingeniería Eléctrica", inst: "Universidad Costa Sur", egreso: 2022,
+      skills: ["Diseño eléctrico", "Cálculo de protecciones"], idiomas: ["Español", "Inglés intermedio"], licencia: false,
+      disp: "Inmediata", renta: null, tel: "+56 9 5550 0113", correo: "tomas.ibanez@ejemplo.test", linkedin: "linkedin.com/in/tomas-ibanez-ejemplo",
+      estado: "revisar", perfil: "Ingeniero joven con foco en diseño eléctrico de plantas fotovoltaicas; todavía le faltan años de operación.",
+      trabajos: [
+        j("Ingeniería Solar Andes", "Ingeniero de proyectos", "2023-03", null, "Diseñó la parte eléctrica de tres plantas fotovoltaicas."),
+        j("Consultora Eléctrica Maipo", "Ingeniero junior", "2022-08", "2023-02", "Apoyó estudios de protecciones.")] }
   ];
 
   /* Datos extra para los filtros nuevos (rubro, normas, software, viajar).
@@ -817,9 +1116,12 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
     c7: { rubro: ["Minería", "Montaje industrial"], normas: ["ISO 45001", "ISO 9001"], software: ["Office", "AutoCAD"], viaja: true },
     c8: { rubro: ["Forestal"], normas: [], software: ["Office"], viaja: false },
     c9: { rubro: ["Laboratorio"], normas: ["ISO 17025"], software: ["Office"], viaja: true },
-    c10: { rubro: ["Forestal"], normas: [], software: ["Office"], viaja: false }
+    c10: { rubro: ["Forestal"], normas: [], software: ["Office"], viaja: false },
+    c11: { rubro: ["Fotovoltaico (PV)", "Minería"], normas: ["ISO 9001"], software: ["SCADA", "AutoCAD", "Office"], viaja: true },
+    c12: { rubro: ["Fotovoltaico (PV)"], normas: [], software: ["Office"], viaja: true },
+    c13: { rubro: ["Fotovoltaico (PV)"], normas: [], software: ["AutoCAD", "Office"], viaja: true }
   };
-  CANDIDATOS.forEach(function (c) { var e = EXTRA[c.id] || {}; c.rubro = e.rubro || []; c.normas = e.normas || []; c.software = e.software || []; c.viaja = !!e.viaja; });
+  CANDIDATOS.forEach(function (c) { var e = EXTRA[c.id] || {}; c.rubro = e.rubro || []; c.normas = e.normas || []; c.software = e.software || []; c.viaja = !!e.viaja; c.ape = apellidoDe(c.nombre); });
 
   /* La región se deduce de la ciudad (sirve para agrupar, p. ej. Copiapó y Diego de Almagro = Atacama) */
   var REGIONES = { "La Serena": "Coquimbo", "Coquimbo": "Coquimbo", "Santiago": "Metropolitana", "Concepción": "Biobío", "Los Ángeles": "Biobío", "Antofagasta": "Antofagasta", "Calama": "Antofagasta", "Rancagua": "O'Higgins", "Temuco": "Araucanía", "Valparaíso": "Valparaíso", "Copiapó": "Atacama", "Diego de Almagro": "Atacama", "Iquique": "Tarapacá", "Arica": "Arica y Parinacota", "Talca": "Maule", "Puerto Montt": "Los Lagos", "Osorno": "Los Lagos" };
@@ -907,7 +1209,8 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
     view: "home", tab: "ficha", sel: null,
     f: { estado: null, falta: false, q: {}, m: {}, ask: null },
     chips: POR_DEFECTO.slice(), canales: { correo: true, whatsapp: true, linkedin: true }, vista: "lista",
-    confirmDel: false, entered: false, from: "home"
+    confirmDel: false, entered: false, from: "home", cmp: { procs: [], cur: null, active: 0, leyendo: false, offOpen: false, _top: [] }, drawer: false,
+    rec: { est: "pend", dia: null }, busca: "", heroC: false
   };
 
   function pasa(c, f) {
@@ -943,8 +1246,8 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
   /* ---------- Asistente (lógica simulada en JavaScript) ----------
      CONECTAR A CLAUDE: aquí se enviaría la pregunta a la API y se recibiría
      la lista de ids. En la demo se detecta ciudad, profesión y "falta/pendiente". */
-  var CIUDADES = ["la serena", "santiago", "valparaiso", "concepcion", "antofagasta", "calama", "rancagua", "temuco", "coquimbo", "iquique", "arica", "talca", "copiapo", "puerto montt", "osorno", "los angeles"];
-  var NOMBRE_CIUDAD = { "la serena": "La Serena", santiago: "Santiago", valparaiso: "Valparaíso", concepcion: "Concepción", antofagasta: "Antofagasta", calama: "Calama", rancagua: "Rancagua", temuco: "Temuco", coquimbo: "Coquimbo", iquique: "Iquique", arica: "Arica", talca: "Talca", copiapo: "Copiapó", "puerto montt": "Puerto Montt", osorno: "Osorno", "los angeles": "Los Ángeles" };
+  var CIUDADES = ["la serena", "santiago", "valparaiso", "concepcion", "antofagasta", "calama", "rancagua", "temuco", "coquimbo", "iquique", "arica", "talca", "copiapo", "puerto montt", "osorno", "los angeles", "diego de almagro"];
+  var NOMBRE_CIUDAD = { "la serena": "La Serena", santiago: "Santiago", valparaiso: "Valparaíso", concepcion: "Concepción", antofagasta: "Antofagasta", calama: "Calama", rancagua: "Rancagua", temuco: "Temuco", coquimbo: "Coquimbo", iquique: "Iquique", arica: "Arica", talca: "Talca", copiapo: "Copiapó", "puerto montt": "Puerto Montt", osorno: "Osorno", "los angeles": "Los Ángeles", "diego de almagro": "Diego de Almagro" };
   function preguntar(texto) {
     var t = norm(texto), ciudad = null, prof = null, falta = /falta|pendiente|incompleto|sin ciudad|sin dato/.test(t), min = null, m;
     CIUDADES.forEach(function (c) { if (t.indexOf(c) > -1 && (!ciudad || c.length > ciudad.length)) ciudad = c; });
@@ -991,30 +1294,84 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
     return '<div class="bar" role="img" aria-label="Proporción de candidatos por estado">' + out + '</div><div class="legend">' + leg + "</div>" + (tot ? "" : "");
   }
 
-  function vistaInicio() {
-    var tot = conteo(), falta = CANDIDATOS.filter(function (c) { return faltantes(c).length; }).length;
-    function tile(act, val, num, label, icono, color) {
-      return '<button class="tile" style="--c:' + color + '" data-act="' + act + '" data-v="' + val + '" aria-label="' + label + ": " + num + '"><span class="ico">' + ic(icono) + '<span class="n">' + num + "</span></span>" + label + "</button>";
-    }
+  /* Asistente + filtros rápidos: se usa en Reclutador y en Candidatos */
+  function heroHtml(i) {
     var chips = S.chips.map(function (key) {
       var sel = S.f.q[key] || [], des = S.f.m && S.f.m[key] === "des";
       var val = sel.length ? esc(sel[0]) + (sel.length > 1 ? " +" + (sel.length - 1) : "") + (des ? " · deseable" : "") : "Todos";
       return '<div class="fcell' + (sel.length ? " on" : "") + '"><button class="fb" data-act="chip" data-v="' + key + '" aria-label="Filtrar por ' + esc(DEFS[key].label) + '"><span class="fl">' + esc(DEFS[key].label) + '</span><span class="fv">' + val + '</span></button><button class="fx" data-act="chip-del" data-v="' + key + '" aria-label="Quitar filtro ' + esc(DEFS[key].label) + '">' + ic("x") + "</button></div>";
     }).join("");
     var hay = OPCIONALES.some(function (o) { return S.chips.indexOf(o) === -1; });
-    var recientes = lista().slice(0, 4);
-    return '<div class="page' + (S.entered ? "" : " enter") + '">' +
-      '<section class="hero" style="--i:0" aria-label="Asistente"><form class="ask" data-form="ask"><label for="askIn">Pregúntale al asistente</label><div class="ask-row"><input id="askIn" type="text" autocomplete="off" placeholder="Ej: técnicos en seguridad que vivan en La Serena"><button class="btn primary" type="submit">' + ic("spark") + 'Preguntar</button></div></form>' +
-      '<div class="qf"><div class="qf-h"><b>Filtros rápidos</b>' + (hay ? '<button class="addf" data-act="chip-add">' + ic("plus") + "Agregar filtro</button>" : "") + '</div><div class="fgrid">' + chips + "</div></div></section>" +
-      '<section style="--i:1" aria-label="Candidatos por estado"><div class="sec-h"><h2>Por estado</h2><button data-act="go-estado" data-v="">Ver todos (' + tot + ')</button></div><div class="tiles">' +
-      tile("go-estado", "revisar", conteo("revisar"), "Por revisar", "eye", "var(--primary)") +
-      tile("go-estado", "contacto", conteo("contacto"), "En contacto", "phone", "var(--gold)") +
-      tile("go-estado", "guardado", conteo("guardado"), "Guardados", "bookmark", "var(--green)") +
-      tile("go-falta", "", falta, "Falta dato", "pin", "var(--soft)") +
-      tile("go-estado", "vetado", conteo("vetado"), "Vetados", "ban", "var(--red)") +
-      tile("go-estado", "", tot, "Todos", "user", "var(--ink)") + "</div></section>" +
-      '<section style="--i:2" aria-label="Currículos"><div class="sec-h"><h2>Currículos</h2>' + vistaToggle() + "</div>" + listaHtml(recientes) +
-      '<button class="btn more-all" data-act="go-estado" data-v="">Ver los ' + tot + " currículos" + ic("chevr") + "</button></section></div>";
+    return '<section class="hero" style="--i:' + i + '" aria-label="Asistente"><form class="ask" data-form="ask"><label for="askIn">Pregúntale al asistente</label><div class="ask-row"><input id="askIn" type="text" autocomplete="off" placeholder="Ej: técnicos en seguridad que vivan en La Serena"><button class="btn primary" type="submit">' + ic("spark") + 'Preguntar</button></div></form>' +
+      '<div class="qf"><div class="qf-h"><b>Filtros rápidos</b>' + (hay ? '<button class="addf" data-act="chip-add">' + ic("plus") + "Agregar filtro</button>" : "") + '</div><div class="fgrid">' + chips + "</div></div></section>";
+  }
+
+  /* ---------- RECLUTADOR: el avance del proceso activo, por fases ---------- */
+  function vistaInicio() {
+    var p = procActual();
+    return '<div class="page' + (S.entered ? "" : " enter") + '"><div class="toolbar"><h1>Reclutador</h1></div>' + heroHtml(0) + panelProceso(p) + "</div>";
+  }
+  function panelProceso(p) {
+    if (!p) return '<section class="card newrec"><h2>Nuevo proceso de reclutamiento</h2><p class="sub">Ponle un nombre y elige a quiénes de la base quieres seguir. Si prefieres partir desde una oferta, usa el Comparador.</p><form class="offform" data-form="newrec"><label class="lab"><span>Nombre del proceso</span><input class="field" id="nrT" type="text" autocomplete="off" placeholder="Ej: Técnico eléctrico · Antofagasta"></label><div><button class="btn primary" type="submit">' + ic("plus") + 'Crear y elegir candidatos</button></div></form><div style="margin-top:12px"><button class="btn" data-act="go-compare">' + ic("compare") + "Prefiero partir con una oferta</button></div></section>";
+    var ab = !p.cerrado, hay = nSeg(p, "contr");
+    var cab = '<section class="card pcard" aria-label="Proceso activo"><div class="pc-top"><div class="pc-t"><small>Proceso ' + (ab ? "abierto" : "cerrado") + " · " + fechaCorta(p.creado) + "</small><b>" + esc(p.titulo) + '</b></div><span class="tag ' + (ab ? "rev" : "dat") + '">' + (ab ? "Abierto" : "Cerrado") + "</span></div>" +
+      '<div class="offact"><button class="btn sm" data-act="go-compare">' + ic("compare") + 'Ver comparador</button><button class="btn sm" data-act="hist-open">' + ic("menu") + "Cambiar proceso</button>" + (ab ? '<button class="btn sm" data-act="rec-add">' + ic("plus") + "Agregar candidatos</button>" : "") + "</div>" +
+      (!ab ? '<div class="assistant-note">' + ic("lock") + "<span>Proceso cerrado: es solo lectura. Si hubo un problema con el candidato, reábrelo.</span></div>"
+        : hay ? '<div class="assistant-note">' + ic("check") + "<span><b>Ya hay un candidato contratado.</b> Puedes cerrar el proceso al final de esta pantalla.</span></div>" : "") + "</section>";
+    return cab + fasesHtml(p) + listaSeg(p) + cierreBar(p, "rec");
+  }
+  function tileSeg(p, k) {
+    var n = nSeg(p, k), d = SEG[k], on = S.rec.est === k;
+    return '<button class="tile' + (on ? " sel" : "") + '" style="--c:' + d.col + '" data-act="rec-est" data-v="' + k + '" aria-pressed="' + on + '" aria-label="' + d.corto + ": " + n + '"><span class="ico">' + ic(d.ico) + '<span class="n">' + n + "</span></span>" + d.corto + "</button>";
+  }
+  function fasesHtml(p) {
+    var h = FASES.map(function (f) {
+      var n = 0; f.k.forEach(function (k) { n += nSeg(p, k); });
+      return '<div class="fase" data-f="' + f.n + '"><div class="fh"><span class="fn">' + f.n + '</span><span class="ft"><b>' + f.t + "</b><small>" + f.s + '</small></span><span class="fc">' + n + '</span></div><div class="stiles">' + f.k.map(function (k) { return tileSeg(p, k); }).join("") + "</div></div>";
+    }).join("");
+    h += '<div class="fase fuera" data-f="0"><div class="fh"><span class="fn x">' + ic("x") + '</span><span class="ft"><b>Fuera del proceso</b><small>Quienes ya no siguen</small></span><span class="fc">' + (nSeg(p, "desc") + nSeg(p, "decl")) + '</span></div><div class="stiles">' + tileSeg(p, "desc") + tileSeg(p, "decl") + "</div></div>";
+    return '<section class="fases" aria-label="Fases del proceso">' + h + "</section>";
+  }
+  var VACIO = { pend: "Aquí llegan los que propone la IA y los que envíes desde el Comparador.", porc: "Aprueba a los pendientes para que pasen a esta lista.", cont: "Quienes ya contactaste, esperando respuesta.", agen: "Agenda una entrevista desde la lista de Contactados.", entr: "Quienes ya pasaron por la entrevista.", fina: "Los candidatos que quedan para decidir.", ofer: "Quienes ya recibieron una oferta.", contr: "Todavía no hay nadie contratado.", desc: "Nadie descartado en este proceso.", decl: "Nadie ha declinado." };
+  function listaSeg(p) {
+    var k = S.rec.est, d = SEG[k], idx = function (id) { return p.rank.map(function (s) { return s.cid; }).indexOf(id); };
+    var ids = Object.keys(p.seg || {}).filter(function (id) { return p.seg[id].e === k; }).sort(function (a, b) { return idx(a) - idx(b); });
+    var out = '<section aria-label="' + d.l + '"><div class="sec-h"><h2>' + d.corto + ' <span class="cnt">' + ids.length + "</span></h2></div>";
+    if (k === "agen") out += calendarioHtml();
+    if (!ids.length) out += '<div class="card empty"><b>Nadie en este estado</b>' + VACIO[k] + "</div>";
+    else out += '<div class="srows">' + ids.map(function (id) { return srowHtml(p, id); }).join("") + "</div>";
+    return out + "</section>";
+  }
+  function srowHtml(p, cid) {
+    var c = candPorId(cid); if (!c) return "";
+    var s = p.seg[cid], sn = p.rank.filter(function (x) { return x.cid === cid; })[0], ab = !p.cerrado, d = SEG[s.e];
+    var tags = (p.reqs.length ? '<span class="tag rev">Calce ' + (sn ? sn.pct : 0) + "%</span>" : "") + sem(semOf(c)) + (s.e === "agen" && s.f ? '<span class="tag con">' + esc(fmtDia(s.f)) + " · " + esc(s.h || "") + "</span>" : "") +
+      (sn && sn.fail.length ? '<span class="tag vet">No cumple lo excluyente</span>' : "") + ((s.e === "desc" || s.e === "decl") && s.m ? '<span class="tag dat">' + esc(s.m) + "</span>" : "");
+    var acts = "";
+    if (ab) {
+      if (d.acc) acts += '<button class="btn primary sm" data-act="seg-av" data-v="' + cid + '">' + ic(d.ai) + d.acc + "</button>";
+      if (s.e === "agen") acts += '<button class="btn sm" data-act="seg-reag" data-v="' + cid + '">' + ic("cal") + "Reagendar</button>";
+      if (s.e === "desc" || s.e === "decl") acts += '<button class="btn sm" data-act="seg-react" data-v="' + cid + '">Reactivar</button>';
+      else if (s.e !== "contr") {
+        acts += '<button class="btn sm" data-act="seg-desc" data-v="' + cid + '">Descartar</button>';
+        if (FLUJO.indexOf(s.e) >= 2) acts += '<button class="btn ghost sm" data-act="seg-decl" data-v="' + cid + '">Declinó</button>';
+      }
+    }
+    return '<div class="srow"><button class="rmain" data-act="open" data-v="' + cid + '"><span class="avatar" aria-hidden="true">' + iniciales(c.nombre) + '</span><span class="txt"><span class="nm">' + esc(c.nombre) + '</span><span class="rl">' + esc(c.cargo) + '</span><span class="meta">' + (c.ciudad ? esc(c.ciudad) : "Sin ciudad registrada") + " · " + fmtAnios(aniosDe(c)) + '</span><span class="tags">' + tags + "</span></span></button>" + (acts ? '<div class="sact">' + acts + "</div>" : "") + "</div>";
+  }
+  function calendarioHtml() {
+    var ag = agendaGlobal(), dias = [], base = new Date(HOY_D + "T12:00:00"), i;
+    for (i = 0; i < 14; i++) { var d = new Date(base.getTime() + i * 864e5); dias.push(d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate())); }
+    var sel = S.rec.dia || (ag.length ? ag.slice().sort(function (a, b) { return a.f < b.f ? -1 : 1; })[0].f : HOY_D);
+    var strip = dias.map(function (k) {
+      var n = ag.filter(function (x) { return x.f === k; }).length, dt = new Date(k + "T12:00:00");
+      return '<button class="cd' + (n ? " has" : "") + '" data-act="rec-dia" data-v="' + k + '" aria-pressed="' + (sel === k) + '" aria-label="' + esc(fmtDia(k)) + (n ? ", " + n + " entrevista" + (n === 1 ? "" : "s") : ", sin entrevistas") + '"><small>' + dt.toLocaleDateString("es-CL", { weekday: "short" }).replace(".", "") + "</small><b>" + dt.getDate() + "</b><i></i></button>";
+    }).join("");
+    var del = ag.filter(function (x) { return x.f === sel; }).sort(function (a, b) { return a.h < b.h ? -1 : 1; });
+    var lst = del.length ? del.map(function (x) {
+      var c = candPorId(x.cid); return '<button class="aitem" data-act="open" data-v="' + x.cid + '"><b class="ah">' + esc(x.h) + '</b><span class="at"><b>' + esc(c.nombre) + "</b><small>" + esc(c.cargo) + " · " + esc(x.p.titulo) + "</small></span>" + ic("chevr") + "</button>";
+    }).join("") : '<p class="sub">Sin entrevistas ese día.</p>';
+    return '<div class="card agenda"><h3 class="rqh">Agenda<small>todos los procesos abiertos</small></h3><div class="cal" role="group" aria-label="Días">' + strip + '</div><h3 class="rqh">Entrevistas del ' + esc(fmtDia(sel)) + '</h3><div class="alist">' + lst + '</div><p class="sub">En la versión real, cada entrevista se guarda en tu calendario de Outlook.</p></div><h3 class="rqh subt">En este proceso</h3>';
   }
 
   function vistaToggle() {
@@ -1052,11 +1409,42 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
     if (f.ask) t += a("Pregunta: «" + f.ask.q + "»", "rm-ask");
     return t ? '<div class="active-tags">' + t + "</div>" : "";
   }
+  /* ---------- CANDIDATOS: orden por apellido, búsqueda e índice A-Z ---------- */
+  function ordenAZ(a, b) { return a.ape.localeCompare(b.ape, "es") || a.nombre.localeCompare(b.nombre, "es"); }
+  function hayDeseable(f) { return Object.keys(f.m || {}).some(function (k) { return f.m[k] === "des" && f.q[k] && f.q[k].length; }); }
+  function listaCand() {
+    var l = lista(), az = !hayDeseable(S.f); if (az) l = l.slice().sort(ordenAZ);
+    var q = norm(S.busca).trim();
+    if (q) l = l.filter(function (c) { return norm([c.nombre, c.cargo, c.ciudad || "", c.prof, c.skills.join(" ")].join(" ")).indexOf(q) > -1; });
+    return { l: l, az: az, q: q };
+  }
+  function grupos(r) {
+    var g = {}, ord = []; r.l.forEach(function (c) { var L = (norm(c.ape).charAt(0) || "#").toUpperCase(); if (!g[L]) { g[L] = []; ord.push(L); } g[L].push(c); });
+    return { g: g, ord: ord };
+  }
+  function candListaHtml(r) {
+    if (!r.l.length) return '<div class="card empty"><b>No hay candidatos con esto</b>' + (r.q ? "Prueba con otro apellido, profesión o ciudad." : "Quita alguno de los filtros para ver más resultados.") + "</div>";
+    if (!r.az) return listaHtml(r.l);
+    var G = grupos(r);
+    return G.ord.map(function (L) { return '<h3 class="lh" id="L-' + L + '">' + L + "<small>" + G.g[L].length + "</small></h3>" + listaHtml(G.g[L]); }).join("");
+  }
+  function letrasHtml(r) {
+    if (!r.az || !r.l.length) return "";
+    return '<nav class="lstrip" aria-label="Ir a la letra del apellido">' + grupos(r).ord.map(function (L) { return '<button data-act="letra" data-v="' + L + '" aria-label="Apellidos con ' + L + '">' + L + "</button>"; }).join("") + "</nav>";
+  }
+  function textoConteo(r) { return r.l.length + " candidato" + (r.l.length === 1 ? "" : "s"); }
+  function refrescarLista() {
+    var r = listaCand(), a = document.getElementById("clist"), b = document.getElementById("lstripw"), c = document.getElementById("ccount");
+    if (a) a.innerHTML = candListaHtml(r); if (b) b.innerHTML = letrasHtml(r); if (c) c.textContent = textoConteo(r);
+  }
   function vistaResultados() {
-    var l = lista();
-    return '<div class="page"><div class="toolbar"><h1>' + esc(tituloResultados()) + '</h1><span class="count" aria-live="polite">' + l.length + " candidato" + (l.length === 1 ? "" : "s") + '</span><span class="sp"></span>' + vistaToggle() + "</div>" +
+    var r = listaCand();
+    return '<div class="page"><div class="toolbar"><h1>' + esc(tituloResultados()) + '</h1><span class="count" id="ccount" aria-live="polite">' + textoConteo(r) + '</span><span class="sp"></span><button class="btn sm" data-act="hero-toggle" aria-pressed="' + (!S.heroC) + '">' + ic("sliders") + "Filtros</button>" + vistaToggle() + "</div>" +
+      (S.heroC ? "" : heroHtml(0)) +
       (S.f.ask ? '<div class="assistant-note" role="status">' + ic("spark") + "<span>" + esc(S.f.ask.msg) + "</span></div>" : "") + etiquetas() +
-      listaHtml(l) + "</div>";
+      '<form class="searchbar" role="search" data-form="q">' + ic("search") + '<label class="sr" for="qIn">Buscar candidatos</label><input id="qIn" type="search" autocomplete="off" placeholder="Buscar por apellido, profesión o ciudad" value="' + esc(S.busca) + '"></form>' +
+      '<div class="clwrap"><div id="lstripw">' + letrasHtml(r) + '</div><div id="clist">' + candListaHtml(r) + "</div></div>" +
+      (r.az ? "" : '<p class="note">Con filtros deseables, la lista va ordenada por coincidencia y no por apellido.</p>') + "</div>";
   }
 
   function filaContacto(icono, valor, key, falta) {
@@ -1098,7 +1486,7 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
         (c.estado === "vetado" ? '<button class="btn" data-act="unveto">' + ic("check") + "Quitar veto</button>" : '<button class="btn" data-act="vetar">' + ic("ban") + "Vetar</button>") +
         '<button class="btn danger" data-act="del-ask">' + ic("trash") + "Eliminar</button>";
     }
-    return '<div class="page wide"><div class="toolbar"><button class="btn sm" data-act="back">' + ic("back") + 'Volver</button><span class="count">' + l.length + " resultado" + (l.length === 1 ? "" : "s") + "</span></div>" +
+    return '<div class="page wide"><div class="toolbar"><button class="btn sm" data-act="back">' + ic("back") + 'Volver</button><span class="count">' + (S.from === "compare" ? "Desde el comparador" : l.length + " resultado" + (l.length === 1 ? "" : "s")) + "</span></div>" +
       '<div class="tabs" role="tablist" aria-label="Ver ficha o currículo"><button role="tab" data-act="tab" data-v="ficha" aria-selected="' + (S.tab === "ficha") + '">Ficha</button><button role="tab" data-act="tab" data-v="cv" aria-selected="' + (S.tab === "cv") + '">Currículo</button></div>' +
       '<div class="detail" data-tab="' + S.tab + '"><aside class="listpane" aria-label="Lista de candidatos"><div class="list">' + l.map(function (x) { return fila(x); }).join("") + "</div></aside>" +
       '<section class="fichapane" aria-label="Ficha del candidato"><div class="card"><div class="head"><span class="avatar" aria-hidden="true">' + iniciales(c.nombre) + "</span><div><h1>" + esc(c.nombre) + "</h1><p>" + esc(c.cargo) + "</p>" +
@@ -1113,30 +1501,604 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
       '<section class="cvpane" aria-label="Currículo">' + cvHtml(c) + "</section></div></div>";
   }
 
-  var ARCHIVOS = [];
-  /* Estimación de lo que costaría leer el archivo. Un token es un trozo de texto (unas 4 letras).
-     Texto y LinkedIn: cálculo real por largo. PDF y Word: rango típico tras extraer solo el texto.
-     Imagen o escaneo: necesita lectura visual (OCR), que cuesta más. */
+  /* ======================================================================
+     CARGAR: la persona solo sube archivos. La IA los lee, arma la ficha y pregunta solo lo que no puede resolver.
+     CONECTAR A CLAUDE: aquí cada archivo se leería (texto extraído en el equipo, tope de unos 3.000 tokens, modelo Haiku)
+     y la respuesta traería la ficha en JSON y la lista de dudas. En la demo todo es simulado.
+     ====================================================================== */
+  var ARCHIVOS = [], ARC_ID = 0;
   var TOPE_TOKENS = 3000;
-  function estimarTokens(a) {
-    var ext = (a.n.split(".").pop() || "").toLowerCase();
-    if (a.txt != null) return "Se enviaría solo el texto: ≈ " + Math.min(TOPE_TOKENS, Math.ceil(a.txt / 4)).toLocaleString("es-CL") + " tokens (tope " + TOPE_TOKENS.toLocaleString("es-CL") + ")";
-    if (ext === "pdf" || ext === "doc" || ext === "docx") return "Texto extraído en tu equipo: ≈ 1.500 a 3.000 tokens, sin enviar el archivo";
-    if (/^(png|jpe?g|webp|heic)$/.test(ext)) return "Imagen: se lee con visión (cuesta más); conviene subir el PDF original";
-    return "Texto extraído en tu equipo, con tope de " + TOPE_TOKENS.toLocaleString("es-CL") + " tokens";
+  var CARGOS_SIM = ["Técnico en seguridad industrial", "Ingeniero eléctrico", "Analista de laboratorio", "Supervisor de obras", "Prevencionista de riesgos"];
+  var CIUDADES_SIM = ["Santiago", "Concepción", "Antofagasta", "La Serena", "Valparaíso"];
+  function nombreDeArchivo(n) {
+    var base = n.replace(/\.[a-z0-9]+$/i, "").replace(/[_\-.]+/g, " ").replace(/\b(cv|curriculum|curriculo|currículum|currículo|vitae|perfil|linkedin|final|actualizado|texto|pegado)\b/gi, " ").replace(/\d+/g, " ").replace(/[()]/g, " ").replace(/\s+/g, " ").trim();
+    if (!base || base.split(" ").length < 2) return null;
+    return base.split(" ").slice(0, 4).map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }).join(" ");
+  }
+  function clasificarArchivo(a) {
+    var h = hashS(a.n); a.dudas = [];
+    if (/oferta|vacante|aviso/i.test(a.n)) { a.tipo = "oferta"; a.dudas.push({ id: "of", q: "Esto parece una oferta de trabajo, no un currículo. ¿La uso en el Comparador?", opts: ["Abrir en el Comparador", "Ignorar este archivo"] }); return; }
+    a.tipo = "cv"; var nom = nombreDeArchivo(a.n);
+    a.res = { nombre: nom || "Nombre por confirmar", cargo: CARGOS_SIM[h % 5], ciudad: CIUDADES_SIM[(h >>> 3) % 5], anios: 2 + (h % 9) };
+    if (!nom) a.dudas.push({ id: "nom", q: "No encontré el nombre completo en el archivo. ¿Cómo se llama la persona?", campo: true, ph: "Nombre y apellidos" });
+    var v = h % 3;
+    if (v === 1) { a.res.ciudad = null; a.dudas.push({ id: "ciu", q: "No aparece la ciudad donde vive. ¿La sabes?", campo: true, ph: "Ej: Copiapó" }); }
+    if (v === 2) { var o = CANDIDATOS[h % CANDIDATOS.length]; a.dudas.push({ id: "dup", q: "Se parece mucho a «" + o.nombre + "», que ya está en la base. ¿Es la misma persona?", opts: ["Sí, actualizar su ficha", "No, es otra persona"] }); }
+  }
+  function archivoHtml(a) {
+    var listo = a.p >= 100, pend = listo ? a.dudas.filter(function (d) { return d.r == null; }) : [], hechas = listo ? a.dudas.filter(function (d) { return d.r != null; }) : [];
+    var chip = !listo ? '<span class="tag dat">Leyendo… ' + Math.round(a.p) + "%</span>" : pend.length ? '<span class="tag con">Necesito tu ayuda</span>' : a.tipo === "oferta" ? '<span class="tag dat">Es una oferta</span>' : '<span class="tag gua">Ficha lista</span>';
+    var cuerpo = "";
+    if (listo && a.tipo === "cv") cuerpo += '<div class="fmini"><b>' + esc(a.res.nombre) + "</b><span>" + esc(a.res.cargo) + " · " + (a.res.ciudad ? esc(a.res.ciudad) : "ciudad sin dato") + " · " + a.res.anios + " años</span><small>Ficha de ejemplo (simulada)</small></div>";
+    pend.forEach(function (d) {
+      var key = a.id + "|" + d.id;
+      cuerpo += '<div class="dq"><p><b>Pregunta</b> ' + esc(d.q) + "</p>" + (d.campo
+        ? '<form class="dqf" data-form="dq" data-v="' + key + '"><input class="field" type="text" autocomplete="off" placeholder="' + esc(d.ph) + '" aria-label="' + esc(d.q) + '"><button class="btn primary sm" type="submit">Guardar</button><button class="btn sm" type="button" data-act="dq-skip" data-v="' + key + '">Dejar sin dato</button></form>'
+        : '<div class="dqo">' + d.opts.map(function (o, i) { return '<button class="btn sm' + (i === 0 ? " primary" : "") + '" data-act="dq-opt" data-v="' + key + "|" + i + '">' + esc(o) + "</button>"; }).join("") + "</div>") + "</div>";
+    });
+    hechas.forEach(function (d) { cuerpo += '<p class="dres">' + ic("check") + "<span>" + esc(d.r) + "</span></p>"; });
+    return '<div class="file" data-done="' + (listo ? 1 : 0) + '"><div class="top"><span>' + esc(a.n) + "</span>" + chip + "</div>" + (listo ? "" : '<div class="prog" role="progressbar" aria-valuenow="' + Math.round(a.p) + '" aria-valuemin="0" aria-valuemax="100"><i style="width:' + a.p + '%"></i></div>') + cuerpo + "</div>";
   }
   function vistaCargar() {
-    var items = ARCHIVOS.map(function (a) {
-      return '<div class="file" data-done="' + (a.p >= 100 ? 1 : 0) + '"><div class="top"><span>' + esc(a.n) + "</span><span>" + (a.p >= 100 ? "Listo (simulado)" : Math.round(a.p) + "%") + '</span></div><span class="tk">' + esc(estimarTokens(a)) + '</span><div class="prog" role="progressbar" aria-valuenow="' + Math.round(a.p) + '" aria-valuemin="0" aria-valuemax="100"><i style="width:' + a.p + '%"></i></div></div>';
-    }).join("");
-    var listos = ARCHIVOS.length && ARCHIVOS.every(function (a) { return a.p >= 100; });
-    return '<div class="page"><div class="toolbar"><h1>Cargar currículos</h1></div>' +
-      '<div class="drop" id="drop"><svg class="i" aria-hidden="true"><use href="#i-upload"/></svg><b>Arrastra los currículos aquí</b><p>PDF, Word, imagen o texto. Puedes subir varios a la vez.</p>' +
+    var items = ARCHIVOS.map(archivoHtml).join("");
+    var listos = ARCHIVOS.filter(function (a) { return a.p >= 100; }).length, ayuda = 0;
+    ARCHIVOS.forEach(function (a) { if (a.p >= 100) ayuda += a.dudas.filter(function (d) { return d.r == null; }).length; });
+    var resumen = ARCHIVOS.length ? '<div class="assistant-note" role="status">' + ic(ayuda ? "spark" : "check") + "<span><b>" + listos + " de " + ARCHIVOS.length + " leídos.</b> " + (ayuda ? "Necesito tu ayuda con " + ayuda + " pregunta" + (ayuda === 1 ? "" : "s") + "; el resto lo resolví yo." : listos === ARCHIVOS.length ? "Sin dudas. Las fichas quedan en Candidatos (en esta demo no se guarda nada)." : "Leyendo…") + "</span></div>" : "";
+    return '<div class="page"><div class="toolbar"><h1>Cargar</h1></div>' +
+      '<div class="drop" id="drop"><svg class="i" aria-hidden="true"><use href="#i-upload"/></svg><b>Sube los archivos y listo</b><p>Currículos en PDF, Word, imagen o texto, de a uno o varios. gladibu los lee, arma la ficha de cada persona y te pregunta solo si algo no queda claro.</p>' +
       '<button class="btn primary" data-act="pick">' + ic("upload") + 'Elegir archivos</button><input type="file" id="fileIn" class="sr" multiple accept=".pdf,.doc,.docx,.txt,image/*" tabindex="-1"></div>' +
-      '<div class="assistant-note note-cost" role="note">' + ic("spark") + '<span><b>Cómo se cuida el costo (versión real)</b><br>1) El texto del PDF o Word se lee en tu equipo; a Claude no se le envía el archivo, solo texto limpio. 2) Se corta a un máximo de unos 3.000 tokens por currículo. 3) Se usa Haiku, el modelo más económico. 4) Un currículo ya leído no se vuelve a procesar. En esta demo todo es simulado.</span></div>' +
-      '<form class="card" data-form="linkedin"><h2>Pegar texto de LinkedIn</h2><p class="sub">Copia el perfil completo y pégalo aquí.</p><label class="lab" style="margin-top:12px"><span class="sr">Texto del perfil</span><textarea class="field" id="liText" placeholder="Pega aquí el texto del perfil"></textarea></label><div style="margin-top:12px"><button class="btn primary" type="submit">' + ic("spark") + "Analizar texto</button></div></form>" +
-      (items ? '<div class="files" aria-live="polite">' + items + "</div>" : "") +
-      (listos ? '<div class="assistant-note" role="status">' + ic("check") + "<span>Listo: " + ARCHIVOS.length + " elemento" + (ARCHIVOS.length === 1 ? "" : "s") + " procesado" + (ARCHIVOS.length === 1 ? "" : "s") + " en la simulación. No se guardó nada.</span></div>" : "") + "</div>";
+      resumen + (items ? '<div class="files" aria-live="polite">' + items + "</div>" : "") +
+      '<details class="card acc2"><summary>Pegar texto de LinkedIn<span class="chev">' + ic("chev") + '</span></summary><form data-form="linkedin"><p class="sub">Copia el perfil completo y pégalo aquí.</p><label class="lab" style="margin-top:12px"><span class="sr">Texto del perfil</span><textarea class="field" id="liText" placeholder="Pega aquí el texto del perfil"></textarea></label><div style="margin-top:12px"><button class="btn primary" type="submit">' + ic("spark") + "Leer texto</button></div></form></details></div>";
+  }
+
+  /* ======================================================================
+     COMPARADOR POR PROYECTOS. Cada oferta evaluada es un proceso nuevo, con fecha, requisitos y el
+     orden de ese día (una foto fija). Los currículos se guardan aparte y siempre se acumulan.
+     CONECTAR AL SERVIDOR: guardarProcs() / cargarProcs() usarían una hoja o base de datos en vez de
+     localStorage. CONECTAR A CLAUDE: leerOferta() enviaría la foto o el texto a la API y recibiría los
+     requisitos en JSON (tipo, valor, excluyente o deseable). El orden se calcula aquí, sobre las fichas.
+     ====================================================================== */
+  var EXC = "exc", DES = "des";
+
+  /* ======================================================================
+     v2e · SEGUIMIENTO POR PROCESO (Reclutador)
+     Cada candidato avanza por fases DENTRO de cada proceso: el mismo candidato puede estar
+     "Contactado" en un proceso y sin contactar en otro. Todo cambio lo hace la persona con un botón;
+     la IA solo propone quiénes entran a la Fase 1.
+     CONECTAR AL SERVIDOR: p.seg y p.log viajan junto con el proceso (misma hoja o lista).
+     ====================================================================== */
+  var HOY_D = "2026-10-12"; // día de referencia de la demo
+  var FLUJO = ["pend", "porc", "cont", "agen", "entr", "fina", "ofer", "contr"];
+  var SEG = {
+    pend: { l: "Pendiente de revisar", corto: "Pendientes", ico: "eye", col: "var(--primary)", acc: "Aprobar para contactar", ai: "check" },
+    porc: { l: "Por contactar", corto: "Por contactar", ico: "mail", col: "var(--soft)", acc: "Marcar como contactado", ai: "send" },
+    cont: { l: "Contactado", corto: "Contactados", ico: "phone", col: "var(--gold)", acc: "Agendar entrevista", ai: "cal" },
+    agen: { l: "Entrevista agendada", corto: "Agendadas", ico: "cal", col: "var(--primary)", acc: "Marcar entrevistado", ai: "check" },
+    entr: { l: "Entrevistado", corto: "Entrevistados", ico: "chat", col: "var(--deep)", acc: "Pasar a finalista", ai: "flag" },
+    fina: { l: "Finalista", corto: "Finalistas", ico: "flag", col: "var(--green)", acc: "Enviar oferta", ai: "send" },
+    ofer: { l: "Oferta enviada", corto: "Oferta enviada", ico: "file", col: "var(--gold)", acc: "Marcar contratado", ai: "check" },
+    contr: { l: "Contratado", corto: "Contratado", ico: "check", col: "var(--green)", acc: null },
+    desc: { l: "Descartado", corto: "Descartados", ico: "ban", col: "var(--red)", acc: null },
+    decl: { l: "Declinó", corto: "Declinaron", ico: "x", col: "var(--soft)", acc: null }
+  };
+  var FASES = [
+    { n: 1, t: "Preselección", s: "La IA propone, tú revisas", k: ["pend", "porc", "cont"] },
+    { n: 2, t: "Entrevista", s: "Hay interés confirmado", k: ["agen", "entr"] },
+    { n: 3, t: "Final", s: "Se decide", k: ["fina", "ofer", "contr"] }
+  ];
+  var MOT_DECL = ["No le interesa la oferta", "Aceptó otra oferta", "La renta ofrecida no le sirve", "Otro motivo"];
+
+  function candPorId(id) { return CANDIDATOS.filter(function (c) { return c.id === id; })[0] || null; }
+  function segOf(p, cid) { return p && p.seg ? p.seg[cid] || null : null; }
+  function nSeg(p, k) { var n = 0; if (p && p.seg) Object.keys(p.seg).forEach(function (id) { if (p.seg[id].e === k) n++; }); return n; }
+  function logP(p, txt) { p.log = p.log || []; p.log.push({ t: new Date().toISOString(), txt: txt }); p.actualizado = new Date().toISOString(); }
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+  function fmtDia(f) { return new Date(f + "T12:00:00").toLocaleDateString("es-CL", { weekday: "short", day: "numeric", month: "short" }); }
+  function hashS(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
+  function apellidoDe(n) { var t = String(n).trim().split(/\s+/); return t.length >= 3 ? t[t.length - 2] : t[t.length - 1]; }
+
+  /* La IA propone a quienes cumplen lo excluyente (hasta 6; mínimo 3 para que haya con quién trabajar) */
+  function sembrarSeg(p) {
+    var rk = p.rank, pool = rk.filter(function (s) { return !s.fail.length; }).slice(0, 6), i = 0;
+    while (pool.length < 3 && i < rk.length) { if (pool.indexOf(rk[i]) === -1) pool.push(rk[i]); i++; }
+    p.seg = {}; pool.forEach(function (s) { p.seg[s.cid] = { e: "pend" }; });
+  }
+  /* Datos de ejemplo para que la demo se vea con vida */
+  function demoSeg(p, modo) {
+    p.seg = {};
+    if (modo === "abierto") {
+      var set = ["c11", "c12", "c13", "c4", "c7"].filter(function (id) { return p.rank.some(function (s) { return s.cid === id; }); });
+      set.forEach(function (id) { p.seg[id] = { e: "pend" }; });
+      if (p.seg.c11) p.seg.c11 = { e: "agen", f: "2026-10-14", h: "10:00" };
+      if (p.seg.c12) p.seg.c12 = { e: "agen", f: "2026-10-14", h: "15:30" };
+      if (p.seg.c13) p.seg.c13 = { e: "cont" };
+      if (p.seg.c7) p.seg.c7 = { e: "desc", m: "No cumple un requisito excluyente del cargo" };
+      return;
+    }
+    p.rank.slice(0, 5).forEach(function (s) { p.seg[s.cid] = { e: "pend" }; });
+    var ids = Object.keys(p.seg);
+    {
+      if (ids[0]) p.seg[ids[0]] = { e: "contr" };
+      if (ids[1]) p.seg[ids[1]] = { e: "decl", m: "Aceptó otra oferta" };
+      if (ids[2]) p.seg[ids[2]] = { e: "desc", m: "Pretensión de renta fuera del rango definido" };
+      if (ids[3]) p.seg[ids[3]] = { e: "desc", m: "Otro motivo objetivo" };
+      if (ids[4]) p.seg[ids[4]] = { e: "desc", m: "Otro motivo objetivo" };
+      p.concl = { cid: ids[0] || null, texto: textoConclusion(p, ids[0] || null) };
+      p.log = [{ t: p.cerrado, txt: "Proceso cerrado con su conclusión." }];
+    }
+  }
+  function textoConclusion(p, cid) {
+    var pasan = p.rank.filter(function (s) { return !s.fail.length; }).length, ent = 0, ds = 0;
+    Object.keys(p.seg || {}).forEach(function (k) {
+      var e = p.seg[k].e; if (["agen", "entr", "fina", "ofer", "contr"].indexOf(e) > -1) ent++; if (e === "desc" || e === "decl") ds++;
+    });
+    var c = cid ? candPorId(cid) : null, s = c ? p.rank.filter(function (x) { return x.cid === cid; })[0] : null;
+    return (p.reqs.length ? "Se evaluaron " + p.n + " currículos y " + pasan + " cumplían todo lo excluyente. " : "Se consideraron " + Object.keys(p.seg || {}).length + " candidatos de la base. ") + ent + (ent === 1 ? " candidato llegó" : " candidatos llegaron") + " a entrevista o más; " + ds + " quedaron fuera. " +
+      (c ? "Se cierra con la contratación de " + c.nombre + (s ? " (calce " + s.pct + " %)" : "") + "." : "Se cierra sin contratación (proceso desierto).");
+  }
+
+  function avanzarSeg(p, cid) {
+    var s = segOf(p, cid); if (!s || p.cerrado) return;
+    var i = FLUJO.indexOf(s.e); if (i < 0 || i >= FLUJO.length - 1) return;
+    if (s.e === "cont") { hojaAgendar(p, cid); return; }
+    var sig = FLUJO[i + 1], c = candPorId(cid), pn = c.nombre.split(" ")[0];
+    s.e = sig; logP(p, c.nombre + ": " + SEG[sig].l + "."); guardarProcs(); render(false);
+    aviso(sig === "contr" ? pn + " quedó contratado/a. Cierra el proceso para dejar la conclusión." : pn + ": " + SEG[sig].l + ".");
+  }
+  function reactivarSeg(p, cid) {
+    var s = segOf(p, cid); if (!s || p.cerrado) return; var c = candPorId(cid);
+    s.e = "pend"; delete s.m; logP(p, c.nombre + ": reactivado, vuelve a Pendiente de revisar."); guardarProcs(); S.rec.est = "pend"; render(false); aviso(c.nombre.split(" ")[0] + " volvió a Pendientes.");
+  }
+  function agendaGlobal() {
+    var out = [];
+    S.cmp.procs.forEach(function (p) {
+      if (p.cerrado) return;
+      Object.keys(p.seg || {}).forEach(function (id) { var s = p.seg[id]; if (s.e === "agen" && s.f) out.push({ f: s.f, h: s.h || "", cid: id, p: p }); });
+    });
+    return out;
+  }
+
+  /* ---------- Hojas del seguimiento ---------- */
+  function hojaAgendar(p, cid) {
+    var c = candPorId(cid), s = segOf(p, cid);
+    abrirHoja("<h2>Agendar entrevista</h2><p class=\"sub\">" + esc(c.nombre) + ". Queda en la agenda de gladibu; en la versión real también en tu calendario de Outlook.</p>" +
+      '<label class="lab"><span>Día</span><input class="field" type="date" id="agF" value="' + (s.f || "2026-10-14") + '" min="' + HOY_D + '"></label>' +
+      '<label class="lab"><span>Hora</span><input class="field" type="time" id="agH" value="' + (s.h || "10:00") + '"></label>' +
+      '<div class="btns"><button class="btn" data-act="sheet-close">Cancelar</button><button class="btn primary" data-act="ag-ok">' + ic("cal") + "Agendar</button></div>", function (sh) {
+      sh.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-act]"); if (!b || b.dataset.act !== "ag-ok") return;
+        var f = sh.querySelector("#agF").value, h = sh.querySelector("#agH").value;
+        if (!f || !h) { aviso("Elige el día y la hora."); return; }
+        s.e = "agen"; s.f = f; s.h = h; logP(p, c.nombre + ": entrevista agendada para el " + fmtDia(f) + " a las " + h + ".");
+        guardarProcs(); S.rec.est = "agen"; S.rec.dia = f; cerrarHoja(); render(false); aviso("Entrevista agendada.");
+      });
+    });
+  }
+  function hojaSalida(p, cid, tipo) {
+    var c = candPorId(cid), lst = tipo === "desc" ? MOTIVOS : MOT_DECL, mot = null;
+    function cuerpo() {
+      return "<h2>" + (tipo === "desc" ? "Descartar a " : "Declinó: ") + esc(c.nombre) + '</h2><p class="sub">' + (tipo === "desc" ? "Elige un motivo objetivo. Queda anotado en este proceso. No uses edad, sexo ni datos protegidos." : "El candidato decidió no seguir. Queda anotado en este proceso.") + '</p><div class="opts list" role="group" aria-label="Motivo">' +
+        lst.map(function (m, i) { return '<button class="opt" data-act="mot" data-v="' + i + '" aria-pressed="' + (mot === i) + '">' + esc(m) + "</button>"; }).join("") + "</div>" +
+        '<div class="btns"><button class="btn" data-act="sheet-close">Cancelar</button><button class="btn ' + (tipo === "desc" ? "danger" : "primary") + '" data-act="sal-ok"' + (mot == null ? " disabled" : "") + ">Confirmar</button></div>";
+    }
+    abrirHoja(cuerpo(), function (sh) {
+      sh.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-act]"); if (!b) return;
+        if (b.dataset.act === "mot") { mot = parseInt(b.dataset.v, 10); sh.innerHTML = cuerpo(); }
+        else if (b.dataset.act === "sal-ok" && mot != null) {
+          var s = segOf(p, cid); s.e = tipo; s.m = lst[mot]; logP(p, c.nombre + ": " + SEG[tipo].l + " (" + lst[mot] + ")."); guardarProcs(); cerrarHoja(); render(false);
+          aviso(c.nombre.split(" ")[0] + ": " + SEG[tipo].l.toLowerCase() + ". Puedes reactivarlo desde esa lista.");
+        }
+      });
+    });
+  }
+  function hojaCerrar(p) {
+    var ids = Object.keys(p.seg || {}).filter(function (id) { var e = p.seg[id].e; return e !== "desc" && e !== "decl"; })
+      .sort(function (a, b) { return FLUJO.indexOf(p.seg[b].e) - FLUJO.indexOf(p.seg[a].e); });
+    var top = ids[0], sel = (top && ["contr", "ofer", "fina"].indexOf(p.seg[top].e) > -1) ? top : null, sug = textoConclusion(p, sel);
+    function cuerpo(txt) {
+      var opts = ids.map(function (id) { var c = candPorId(id); return '<button class="opt" data-act="cl-sel" data-v="' + id + '" aria-pressed="' + (sel === id) + '">' + esc(c.nombre) + " <small>" + SEG[p.seg[id].e].l + "</small></button>"; }).join("") +
+        '<button class="opt" data-act="cl-sel" data-v="-" aria-pressed="' + (sel == null) + '">Nadie: proceso desierto</button>';
+      return "<h2>Cerrar proceso</h2><p class=\"sub\">Deja la conclusión. Queda guardada con la fecha y no se puede cambiar sin reabrir el proceso.</p>" +
+        '<h3 class="rqh">¿Quién fue contratado?</h3><div class="opts list" role="group" aria-label="Contratado">' + opts + "</div>" +
+        '<label class="lab"><span>Conclusión<small>La app propone una con los resultados; puedes editarla.</small></span><textarea class="field" id="clTxt" rows="5">' + esc(txt) + "</textarea></label>" +
+        '<button class="btn ghost sm" data-act="cl-sug" type="button">Volver a la sugerencia</button>' +
+        '<div class="btns"><button class="btn" data-act="sheet-close">Cancelar</button><button class="btn primary" data-act="cl-ok">' + ic("lock") + "Cerrar y respaldar</button></div>";
+    }
+    abrirHoja(cuerpo(sug), function (sh) {
+      sh.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-act]"); if (!b) return;
+        var act = b.dataset.act, ta = sh.querySelector("#clTxt");
+        if (act === "cl-sel") {
+          var editado = ta.value !== sug; sel = b.dataset.v === "-" ? null : b.dataset.v; var nuevo = textoConclusion(p, sel);
+          var keep = editado ? ta.value : nuevo; sug = nuevo; sh.innerHTML = cuerpo(keep);
+        } else if (act === "cl-sug") { ta.value = sug; }
+        else if (act === "cl-ok") {
+          var t = ta.value.trim(); if (t.length < 10) { aviso("Escribe una conclusión de al menos 10 letras."); ta.focus(); return; }
+          p.cerrado = new Date().toISOString(); p.concl = { cid: sel, texto: t };
+          if (sel) p.seg[sel].e = "contr";
+          logP(p, "Proceso cerrado con su conclusión."); p.actualizado = p.cerrado; guardarProcs(); S.cmp.offOpen = false; cerrarHoja(); render(false);
+          aviso("Proceso cerrado y respaldado con su conclusión.");
+        }
+      });
+    });
+  }
+  function hojaReabrir(p) {
+    abrirHoja('<h2>Reabrir proceso</h2><p class="sub">Úsalo si, por ejemplo, el candidato elegido ya no sigue. El proceso vuelve a estar abierto y el cambio queda anotado en su registro.</p>' +
+      '<label class="lab"><span>¿Por qué lo reabres?</span><textarea class="field" id="rbTxt" rows="3" placeholder="Ej: el candidato contratado declinó la oferta"></textarea></label>' +
+      '<div class="btns"><button class="btn" data-act="sheet-close">Cancelar</button><button class="btn primary" data-act="rb-ok">Reabrir proceso</button></div>', function (sh) {
+      sh.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-act]"); if (!b || b.dataset.act !== "rb-ok") return;
+        var t = sh.querySelector("#rbTxt").value.trim(); if (t.length < 5) { aviso("Cuenta brevemente el motivo."); sh.querySelector("#rbTxt").focus(); return; }
+        var ant = p.concl ? p.concl.texto : "";
+        if (p.concl && p.concl.cid && p.seg[p.concl.cid] && p.seg[p.concl.cid].e === "contr") p.seg[p.concl.cid].e = "ofer";
+        p.cerrado = null; p.concl = null; logP(p, "Reabierto: " + t + (ant ? " Conclusión anterior: " + ant : ""));
+        guardarProcs(); cerrarHoja(); render(false); aviso("Proceso reabierto.");
+      });
+    });
+  }
+  /* Al abrir un proceso del historial: dos caminos, con tarjetas grandes */
+  function hojaProceso(p) {
+    abrirHoja("<h2>" + esc(p.titulo) + '</h2><p class="sub">' + (p.cerrado ? "Cerrado el " + fechaHora(p.cerrado) : "Abierto el " + fechaHora(p.creado)) + " — ¿qué quieres ver?</p>" +
+      '<div class="pick2"><button class="pk" data-act="pk-rec"><span class="pi">' + ic("funnel") + '</span><span><b>Reclutador</b><span class="d">Seguimiento: a quién contactar, entrevistas y decisiones.</span></span></button>' +
+      '<button class="pk alt" data-act="pk-cmp"><span class="pi">' + ic("compare") + '</span><span><b>Comparador</b><span class="d">La oferta original y el ranking de ese día.</span></span></button></div>' +
+      (p.cerrado ? '<button class="btn" data-act="pk-reabrir">' + ic("lock") + "Reabrir este proceso</button>" : "") +
+      '<div class="btns"><button class="btn" data-act="sheet-close">Cancelar</button></div>', function (sh) {
+      sh.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-act]"); if (!b) return;
+        var act = b.dataset.act; if (act === "sheet-close") return; S.cmp.cur = p.id; S.cmp.active = 0; S.cmp.offOpen = false;
+        if (act === "pk-rec") { S.rec.est = "pend"; cerrarHoja(); ir("home"); }
+        else if (act === "pk-cmp") { cerrarHoja(); ir("compare"); }
+        else if (act === "pk-reabrir") { hojaReabrir(p); }
+      });
+    });
+  }
+  function hojaOferta(p) {
+    var cuerpo = p.thumb ? '<img class="obig" src="' + p.thumb + '" alt="Imagen de la oferta original">' : paperHtml(p);
+    var man = (p.manual || []).length ? '<h3 class="rqh">Lo que agregaste a mano</h3><ul class="logl">' + p.manual.map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("") + "</ul>" : "";
+    var conf = (p.conflictos || []).length ? '<div class="note warn"><b>Diferencias entre la oferta y lo que escribiste</b><br>' + p.conflictos.map(esc).join("<br>") + "</div>" : "";
+    abrirHoja("<h2>Oferta original</h2><p class=\"sub\">" + esc(p.titulo) + "</p>" + cuerpo + man + conf +
+      '<p class="sub">' + (p.thumb ? "Esta es la imagen que subiste." : "Demo: aquí iría la foto o el PDF original. Por ahora se muestra el texto de la oferta.") + ' En la versión real queda guardada junto al proceso.</p><div class="btns"><button class="btn primary" data-act="sheet-close">Cerrar</button></div>');
+  }
+  /* ---------- v2g: nuevo proceso (elige Reclutador o Comparador), agregar candidatos, registro ---------- */
+  function hojaNuevo() {
+    abrirHoja('<h2>Nuevo proceso</h2><p class="sub">¿Cómo quieres empezar?</p><div class="pick2">' +
+      '<button class="pk" data-act="nw-rec"><span class="pi">' + ic("funnel") + '</span><span><b>Reclutador</b><span class="d">Parte de los candidatos que ya tienes y haz el seguimiento: contactos, entrevistas y decisiones.</span></span></button>' +
+      '<button class="pk alt" data-act="nw-cmp"><span class="pi">' + ic("compare") + '</span><span><b>Comparador</b><span class="d">Sube una oferta y la IA ordena a los mejores candidatos para ese cargo.</span></span></button></div>' +
+      '<div class="btns"><button class="btn" data-act="sheet-close">Cancelar</button></div>', function (sh) {
+      sh.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-act]"); if (!b) return;
+        if (b.dataset.act === "nw-rec") { S.cmp.cur = null; S.rec.est = "pend"; cerrarHoja(); ir("home"); }
+        else if (b.dataset.act === "nw-cmp") { S.cmp.cur = null; cerrarHoja(); ir("compare"); }
+      });
+    });
+  }
+  function crearProcRec(titulo) {
+    var p = nuevoProceso({ titulo: titulo, reqs: [], nota: "" }); p.seg = {}; logP(p, "Proceso creado desde Reclutador.");
+    S.cmp.procs.unshift(p); S.cmp.cur = p.id; S.rec.est = "pend"; guardarProcs(); render(false); hojaAgregarCand(p);
+  }
+  function hojaAgregarCand(p) {
+    var sel = [], q = "";
+    function lst() { var qq = norm(q).trim(); return CANDIDATOS.filter(function (c) { return c.estado !== "vetado" && !p.seg[c.id] && (!qq || norm(c.nombre + " " + c.cargo + " " + (c.ciudad || "")).indexOf(qq) > -1); }).sort(ordenAZ); }
+    function items() { var l = lst(); return l.length ? l.map(function (c) { return '<button class="opt" data-act="ac-t" data-v="' + c.id + '" aria-pressed="' + (sel.indexOf(c.id) > -1) + '">' + esc(c.nombre) + " <small>" + esc(c.cargo) + "</small></button>"; }).join("") : '<p class="sub">No hay candidatos con eso.</p>'; }
+    abrirHoja('<h2>Agregar candidatos</h2><p class="sub">Elige quiénes entran a Pendientes de este proceso.</p><label class="sr" for="acQ">Buscar</label><input class="field" id="acQ" type="search" autocomplete="off" placeholder="Buscar por apellido, profesión o ciudad"><div class="opts list" id="acL">' + items() + '</div><div class="btns"><button class="btn" data-act="sheet-close">Ahora no</button><button class="btn primary" data-act="ac-ok" id="acOk" disabled>Agregar 0</button></div>', function (sh) {
+      function refresca() { sh.querySelector("#acL").innerHTML = items(); var ok = sh.querySelector("#acOk"); ok.textContent = "Agregar " + sel.length; ok.disabled = !sel.length; }
+      sh.addEventListener("input", function (e) { if (e.target.id === "acQ") { q = e.target.value; refresca(); } });
+      sh.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-act]"); if (!b) return;
+        if (b.dataset.act === "ac-t") { var i = sel.indexOf(b.dataset.v); if (i > -1) sel.splice(i, 1); else sel.push(b.dataset.v); refresca(); }
+        else if (b.dataset.act === "ac-ok" && sel.length) {
+          sel.forEach(function (id) { p.seg[id] = { e: "pend" }; logP(p, candPorId(id).nombre + ": agregado a Pendientes."); });
+          guardarProcs(); S.rec.est = "pend"; cerrarHoja(); render(false); aviso(sel.length + " candidato" + (sel.length === 1 ? "" : "s") + " en Pendientes.");
+        }
+      });
+    });
+  }
+  function hojaRegistro(p) {
+    var cn = p.concl ? '<div class="concl"><small>Conclusión · ' + fechaHora(p.cerrado) + "</small>" + esc(p.concl.texto) + "</div>" : "";
+    var lg = (p.log || []).length ? '<ul class="logl">' + p.log.slice().reverse().map(function (x) { return "<li><b>" + fechaHora(x.t) + "</b> · " + esc(x.txt) + "</li>"; }).join("") + "</ul>" : '<p class="sub">Aún no hay cambios registrados.</p>';
+    abrirHoja("<h2>Registro del proceso</h2><p class=\"sub\">" + esc(p.titulo) + "</p>" + cn + lg + '<div class="btns"><button class="btn primary" data-act="sheet-close">Cerrar</button></div>');
+  }
+  /* Barra compacta de cierre: la misma en Reclutador y en Comparador, con otra orientación en cada una */
+  function cierreBar(p, modo) {
+    var ab = !p.cerrado, ns = Object.keys(p.seg || {}).length, ent = 0, hire = nSeg(p, "contr"), pasan = p.rank.filter(function (s) { return !s.fail.length; }).length;
+    ["agen", "entr", "fina", "ofer", "contr"].forEach(function (k) { ent += nSeg(p, k); });
+    var mini = '<button data-act="proc-csv">' + ic("file") + "Respaldo</button><button data-act=\"proc-log\">" + ic("list") + "Registro</button>" + (!ab && modo === "cmp" ? '<button data-act="proc-reeval">' + ic("spark") + "Re-evaluar</button>" : "") + '<button data-act="hist-new">' + ic("plus") + "Nuevo</button>";
+    if (ab) {
+      var sub = modo === "rec" ? ns + " en seguimiento · " + ent + " en entrevista o más · " + hire + " contratado" + (hire === 1 ? "" : "s") : p.n + " evaluados · " + pasan + " cumplen lo excluyente";
+      return '<section class="cbar" aria-label="Cierre del proceso"><div class="cb-t"><b>' + (modo === "rec" ? "Cerrar el seguimiento" : "Cerrar la comparación") + "</b><small>" + sub + '</small></div><button class="btn primary sm" data-act="proc-cerrar">' + ic("lock") + 'Cerrar proceso</button><div class="cb-m">' + mini + "</div></section>";
+    }
+    return '<section class="cbar closed" aria-label="Proceso cerrado"><div class="cb-t"><b>Proceso cerrado · ' + fechaCorta(p.cerrado) + '</b><small class="cl">' + esc(p.concl ? p.concl.texto : "Sin conclusión registrada.") + '</small></div><button class="btn primary sm" data-act="proc-reabrir">' + ic("lock") + 'Reabrir</button><div class="cb-m">' + mini + "</div></section>";
+  }
+
+  function paperHtml(p) {
+    var t = p.texto;
+    if (t) return '<div class="ofh"><small>' + esc(t.origen) + "</small><h4>" + esc(p.titulo) + "</h4>" + t.secciones.map(function (sc) { return "<h5>" + esc(sc.h) + "</h5><ul>" + sc.l.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>"; }).join("") + "</div>";
+    if (p.raw) return '<div class="ofh"><h4>' + esc(p.titulo) + '</h4><p class="raw">' + esc(p.raw) + "</p></div>";
+    var ex = p.reqs.filter(function (r) { return r.m === EXC; }).map(rqLabel), de = p.reqs.filter(function (r) { return r.m === DES; }).map(rqLabel);
+    return '<div class="ofh"><small>Texto armado con los requisitos leídos de la oferta</small><h4>' + esc(p.titulo) + "</h4><h5>Excluyente</h5><ul>" + (ex.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") || "<li>Ninguno</li>") + "</ul><h5>Deseable</h5><ul>" + (de.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") || "<li>Ninguno</li>") + "</ul></div>";
+  }
+
+  function rq(tipo, val, m) { return { id: tipo + ":" + JSON.stringify(val), tipo: tipo, val: val, m: m }; }
+  function rqLabel(r) {
+    var v = r.val;
+    switch (r.tipo) {
+      case "prof": return "Profesión: " + v;
+      case "ciudad": return "Reside en " + v.join(" o ");
+      case "anios": return "Mínimo " + v + " años de experiencia";
+      case "estudios": return "Estudios: " + v.join(" o ").toLowerCase().replace(/^./, function (x) { return x.toUpperCase(); });
+      case "licencia": return "Licencia de conducir";
+      case "viaja": return "Disponible para viajar";
+      case "rubro": return "Rubro: " + v;
+      default: return v;
+    }
+  }
+  /* 1 = cumple, 0 = no cumple, -1 = falta el dato, 2 = requisito libre: se revisa leyendo el CV */
+  function rqEval(c, r) {
+    var v = r.val;
+    switch (r.tipo) {
+      case "prof": return c.prof === v ? 1 : 0;
+      case "ciudad": if (!c.ciudad) return -1; return v.map(norm).indexOf(norm(c.ciudad)) > -1 ? 1 : 0;
+      case "anios": return aniosDe(c) >= v ? 1 : 0;
+      case "estudios": if (!c.estudios) return -1; return v.indexOf(c.estudios) > -1 ? 1 : 0;
+      case "licencia": return c.licencia ? 1 : 0;
+      case "viaja": return c.viaja ? 1 : 0;
+      case "normas": return c.normas.indexOf(v) > -1 ? 1 : 0;
+      case "software": return c.software.indexOf(v) > -1 ? 1 : 0;
+      case "rubro": return c.rubro.indexOf(v) > -1 ? 1 : 0;
+      case "libre": return 2;
+    }
+    return 0;
+  }
+  var EJEMPLOS = [
+    { titulo: "Ingeniero O&M · plantas fotovoltaicas",
+      texto: { origen: "Oferta publicada en Factorial (n.º 317224)", secciones: [
+        { h: "Requisitos", l: ["Mínimo 5 años de experiencia profesional en operación y mantenimiento (O&M), ingeniería, supervisión o gestión técnica de plantas de generación de energía.", "Experiencia comprobable en plantas solares fotovoltaicas, preferiblemente de gran escala.", "Experiencia en elaboración, revisión o implementación de procedimientos, manuales, instructivos y planes de O&M."] },
+        { h: "Principales funciones", l: ["Elaborar los procedimientos de operación y mantenimiento de los proyectos asignados.", "Realizar visitas técnicas iniciales a las plantas para conocer instalaciones, equipos y condiciones operativas.", "Recopilar y analizar planos, manuales de fabricantes, especificaciones y documentación técnica."] }] },
+      reqs: [rq("anios", 5, EXC), rq("estudios", ["Universitario"], EXC), rq("rubro", "Fotovoltaico (PV)", EXC), rq("libre", "Elaboración de procedimientos y manuales de O&M", DES)] },
+    { titulo: "Técnico en prevención de riesgos · La Serena", reqs: [rq("prof", "Seguridad", EXC), rq("ciudad", ["La Serena"], EXC), rq("anios", 2, EXC), rq("estudios", ["Universitario", "Técnico superior"], EXC), rq("normas", "ISO 45001", DES), rq("licencia", true, DES), rq("software", "Office", DES)] },
+    { titulo: "Técnico electricista · Antofagasta", reqs: [rq("prof", "Electricidad", EXC), rq("ciudad", ["Antofagasta"], EXC), rq("anios", 3, DES), rq("software", "AutoCAD", DES), rq("viaja", true, DES), rq("rubro", "Minería", DES)] },
+    { titulo: "Analista de laboratorio · Química", reqs: [rq("prof", "Química", EXC), rq("estudios", ["Universitario", "Técnico superior"], EXC), rq("ciudad", ["Santiago", "Valparaíso", "Concepción"], DES), rq("normas", "ISO 9001", DES), rq("software", "Office", DES), rq("anios", 1, DES)] }
+  ];
+  function copiaReqs(rs) { return rs.map(function (r) { return rq(r.tipo, r.val, r.m); }); }
+
+  /* Lectura simulada de texto: detecta profesión, ciudad, años, estudios, licencia, viajes, normas, software y rubro.
+     Las frases con «ideal», «deseable» o «preferentemente» quedan como deseables. */
+  function parseTexto(texto) {
+    var segs = String(texto).split(/[.;\n,]/), out = [], ciu = [], ciuM = EXC, niv = [], estM = DES;
+    function add(r) { if (!out.some(function (x) { return x.id === r.id; })) out.push(r); }
+    segs.forEach(function (sg) {
+      var t = norm(sg); if (!t.trim()) return;
+      var suave = /ideal|deseable|prefer|valorable|se valora/.test(t), duro = /excluyente|obligator|requisito|debe|resid|vivan|viva |vivir/.test(t);
+      var m = suave ? DES : (duro ? EXC : null);
+      CIUDADES.forEach(function (c) { if (t.indexOf(c) > -1 && ciu.indexOf(NOMBRE_CIUDAD[c]) === -1) ciu.push(NOMBRE_CIUDAD[c]); });
+      if (ciu.length && suave) ciuM = DES;
+      if (/segur|prevenc|riesgo/.test(t)) add(rq("prof", "Seguridad", m || EXC)); else if (/quimic|laborat/.test(t)) add(rq("prof", "Química", m || EXC)); else if (/electric/.test(t)) add(rq("prof", "Electricidad", m || EXC));
+      var mm = t.match(/(\d+)\s*\+?\s*(anos|años)/); if (mm) add(rq("anios", parseInt(mm[1], 10), m || EXC));
+      if (/universitari|ingenier|profesional|titulo/.test(t)) { if (niv.indexOf("Universitario") === -1) niv.push("Universitario"); if (!suave && /titulo|universitari/.test(t)) estM = EXC; }
+      if (/tecnic/.test(t)) ["Técnico superior", "Técnico medio"].forEach(function (x) { if (niv.indexOf(x) === -1) niv.push(x); });
+      if (/licencia/.test(t)) add(rq("licencia", true, m || DES));
+      if (/viajar|viaje/.test(t)) add(rq("viaja", true, m || DES));
+      var iso = t.match(/iso\s*(9001|45001|14001|17025)/g); if (iso) iso.forEach(function (x) { add(rq("normas", "ISO " + x.replace(/\D/g, ""), m || DES)); });
+      if (/autocad/.test(t)) add(rq("software", "AutoCAD", m || DES));
+      if (/\bscada\b/.test(t)) add(rq("software", "SCADA", m || DES));
+      if (/office|excel|word|powerpoint/.test(t)) add(rq("software", "Office", m || DES));
+      if (/fotovoltaic|solar|\bpv\b/.test(t)) add(rq("rubro", "Fotovoltaico (PV)", m || DES));
+      if (/miner/.test(t)) add(rq("rubro", "Minería", m || DES));
+      if (/forestal/.test(t)) add(rq("rubro", "Forestal", m || DES));
+      if (/construccion/.test(t)) add(rq("rubro", "Construcción", m || DES));
+    });
+    if (ciu.length) out.unshift(rq("ciudad", ciu, ciuM));
+    if (niv.length) add(rq("estudios", niv, estM));
+    return out;
+  }
+
+  /* Match: cada requisito suma su peso (excluyente 3, deseable 1); si falta el dato cuenta la mitad; los libres no puntúan.
+     Quien no cumple un excluyente pasa al fondo. Nunca usa edad, sexo ni datos protegidos. */
+  function ranking(of) {
+    var out = CANDIDATOS.filter(function (c) { return c.estado !== "vetado"; }).map(function (c) {
+      var W = 0, got = 0, ok = [], pend = [], fail = [], dfail = [], rev = [];
+      of.reqs.forEach(function (r) {
+        var e = rqEval(c, r);
+        if (e === 2) { rev.push(rqLabel(r)); return; }
+        var w = r.m === EXC ? 3 : 1; W += w;
+        if (e === 1) { got += w; ok.push(rqLabel(r)); }
+        else if (e === -1) { got += w / 2; pend.push(rqLabel(r)); }
+        else if (r.m === EXC) fail.push(rqLabel(r)); else dfail.push(rqLabel(r));
+      });
+      return { c: c, pct: W ? Math.round(100 * got / W) : 0, ok: ok, pend: pend, fail: fail, dfail: dfail, rev: rev };
+    });
+    out.sort(function (a, b) { return ((a.fail.length ? 1 : 0) - (b.fail.length ? 1 : 0)) || (b.pct - a.pct) || (semOf(b.c).score - semOf(a.c).score); });
+    return out;
+  }
+  /* Foto fija del resultado: es lo que se respalda en el proceso */
+  function snap(r) {
+    var c = r.c;
+    return { cid: c.id, nombre: c.nombre, cargo: c.cargo, ciudad: c.ciudad, anios: Math.round(aniosDe(c) * 10) / 10, pct: r.pct, ok: r.ok, pend: r.pend, fail: r.fail, dfail: r.dfail, rev: r.rev, sem: semOf(c).o };
+  }
+  function refrescarProceso(p) { var r = ranking(p); p.rank = r.map(snap); p.n = r.length; }
+  function nuevoProceso(of, creado, cerrado) {
+    var p = { id: "p" + Date.now() + Math.floor(Math.random() * 1000), titulo: of.titulo, creado: creado || new Date().toISOString(), actualizado: null, cerrado: cerrado || null, reqs: copiaReqs(of.reqs), texto: of.texto || null, raw: of.raw || null, nota: of.nota || "", thumb: of.thumb || null, manual: [], conflictos: [], log: [], concl: null, seg: {}, rank: [], n: 0 };
+    refrescarProceso(p); sembrarSeg(p); return p;
+  }
+  function procActual() { return S.cmp.procs.filter(function (p) { return p.id === S.cmp.cur; })[0] || null; }
+
+  /* Respaldo: en esta demo vive en el navegador de este equipo. */
+  var CLAVE_PROC = "gladibu-procesos-v2";
+  function guardarProcs() { try { localStorage.setItem(CLAVE_PROC, JSON.stringify(S.cmp.procs, function (k, v) { return k === "thumb" ? undefined : v; })); } catch (err) { /* sin almacenamiento: no pasa nada */ } }
+  function cargarProcs() {
+    var ps = null; try { ps = JSON.parse(localStorage.getItem(CLAVE_PROC) || "null"); } catch (err) { ps = null; }
+    if (ps && ps.length) { S.cmp.procs = ps; S.cmp.cur = ps[0].id; return; }
+    var a = nuevoProceso(EJEMPLOS[0]), b = nuevoProceso(EJEMPLOS[1], "2026-10-08T10:30:00", "2026-10-08T17:10:00"), c = nuevoProceso(EJEMPLOS[3], "2026-10-05T16:45:00", "2026-10-06T09:20:00");
+    demoSeg(a, "abierto"); demoSeg(b, "cerrado"); demoSeg(c, "cerrado");
+    S.cmp.procs = [a, b, c]; S.cmp.cur = a.id; guardarProcs();
+  }
+  function fechaHora(iso) { var d = new Date(iso); return d.toLocaleDateString("es-CL", { day: "numeric", month: "short", year: "numeric" }) + " · " + d.toLocaleTimeString("es-CL", { hour: "2-digit", minute: "2-digit" }); }
+  function fechaCorta(iso) { return new Date(iso).toLocaleDateString("es-CL", { day: "numeric", month: "short" }); }
+
+  function descargarCsv(p) {
+    function q(x) { return '"' + String(x == null ? "" : x).replace(/"/g, '""') + '"'; }
+    var lin = [["Proceso", p.titulo], ["Fecha", fechaHora(p.creado)], ["Estado", p.cerrado ? "Cerrado el " + fechaHora(p.cerrado) : "Abierto"], ["Conclusión", p.concl ? p.concl.texto : ""],
+      ["Excluyentes", p.reqs.filter(function (r) { return r.m === EXC; }).map(rqLabel).join(" | ")], ["Deseables", p.reqs.filter(function (r) { return r.m === DES; }).map(rqLabel).join(" | ")], [], 
+      ["Candidato", "Cargo", "Ciudad", "Años de experiencia", "Calce %", "Cumple", "No cumple (excluyente)", "Falta el dato", "Revisar en el CV", "Estado en el proceso"]];
+    p.rank.forEach(function (s) { lin.push([s.nombre, s.cargo, s.ciudad || "", String(s.anios).replace(".", ","), s.pct, s.ok.join(" | "), s.fail.join(" | "), s.pend.join(" | "), s.rev.join(" | "), (p.seg && p.seg[s.cid]) ? SEG[p.seg[s.cid].e].l : ""]); });
+    var txt = "﻿" + lin.map(function (l) { return l.map(q).join(";"); }).join("\r\n");
+    try {
+      var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([txt], { type: "text/csv;charset=utf-8" }));
+      a.download = "proceso-" + norm(p.titulo).replace(/[^a-z0-9]+/g, "-").slice(0, 40) + ".csv"; document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); aviso("Respaldo descargado.");
+    } catch (err) { aviso("No se pudo descargar el respaldo."); }
+  }
+
+  function leerOferta(of) {
+    S.cmp.leyendo = true; render(false);
+    setTimeout(function () {
+      var p = nuevoProceso(of); S.cmp.procs.unshift(p); S.cmp.cur = p.id; S.cmp.leyendo = false; S.cmp.active = 0; S.cmp.offOpen = false; guardarProcs();
+      if (S.view === "compare") render(false);
+    }, 1100);
+  }
+  function enviarOferta(f) {
+    if (f === "offer") {
+      var t = (document.getElementById("offTxt").value || "").trim();
+      if (!t) { aviso("Pega el texto de la oferta o sube una foto."); return; }
+      var rs = parseTexto(t);
+      if (!rs.length) { aviso("No encontré requisitos. Prueba con ciudad, profesión o años de experiencia."); return; }
+      leerOferta({ titulo: (t.split("\n")[0] || "Oferta pegada").slice(0, 60), reqs: rs, raw: t, nota: "" });
+    } else {
+      var q = (document.getElementById("refIn").value || "").trim(), p = procActual(); if (!q || !p || p.cerrado) return;
+      var nuevos = parseTexto(q);
+      if (!nuevos.length) { aviso("No entendí qué agregar. Ejemplo: «que viva en La Serena, ideal con ISO 45001»."); return; }
+      nuevos.forEach(function (r) {
+        if (["prof", "anios", "ciudad", "estudios"].indexOf(r.tipo) > -1) {
+          p.reqs.filter(function (x) { return x.tipo === r.tipo && x.id !== r.id; }).forEach(function (x) { (p.conflictos = p.conflictos || []).push("La oferta decía «" + rqLabel(x) + "» y tú indicaste «" + rqLabel(r) + "». Quedó lo que indicaste."); });
+          p.reqs = p.reqs.filter(function (x) { return x.tipo !== r.tipo; });
+        }
+        if (!p.reqs.some(function (x) { return x.id === r.id; })) p.reqs.push(r);
+      });
+      (p.manual = p.manual || []).push(q); logP(p, "Requisitos afinados a mano: «" + q + "».");
+      cambioReqs(p);
+      aviso("Agregué " + nuevos.length + " requisito" + (nuevos.length === 1 ? "" : "s") + " y actualicé el orden.");
+    }
+  }
+  function cambioReqs(p) { refrescarProceso(p); p.actualizado = new Date().toISOString(); guardarProcs(); S.cmp.active = 0; S.cmp.offOpen = true; render(false); }
+
+  function semS(o) { return '<span class="sem ' + o + '">' + SEMLBL[o] + "</span>"; }
+  function wcard(s, i) {
+    var f = s.fail.length;
+    return '<button class="wc' + (f ? " nok" : "") + '" data-act="wheel-card" data-v="' + i + '" aria-label="' + esc(s.nombre) + ", calce " + s.pct + " por ciento" + (f ? ", no cumple un requisito excluyente" : "") + '">' +
+      '<span class="wtop"><span class="avatar" aria-hidden="true">' + iniciales(s.nombre) + '</span><span class="wnm"><b>' + esc(s.nombre.split(" ")[0] + " " + apellidoDe(s.nombre)) + "</b><small>" + esc(s.cargo) + '</small></span><span class="wpct"><b>' + s.pct + "<i>%</i></b></span></span>" +
+      '<span class="wfoot">' + semS(s.sem) + (f ? '<span class="tag vet">No cumple</span>' : (s.pend.length ? '<span class="tag con">Por confirmar</span>' : '<span class="tag gua">Cumple</span>')) + "</span></button>";
+  }
+  function critFila(cls, rot, txt) { return '<div class="crit"><span class="sem ' + cls + '">' + rot + "</span><div><b>" + esc(txt) + "</b></div></div>"; }
+  function detalleHtml(s) {
+    var filas = "", tot = s.ok.length + s.fail.length + s.pend.length + s.dfail.length, p = procActual(), sg = segOf(p, s.cid);
+    s.fail.forEach(function (x) { filas += critFila("r", "No cumple", x); });
+    s.pend.forEach(function (x) { filas += critFila("y", "Confirmar", x + " (falta el dato)"); });
+    s.dfail.forEach(function (x) { filas += critFila("n", "No tiene", x); });
+    s.rev.forEach(function (x) { filas += critFila("n", "En el CV", x); });
+    s.ok.forEach(function (x) { filas += critFila("g", "Cumple", x); });
+    var rec = sg ? '<span class="tag gua">En Reclutador: ' + SEG[sg.e].l + "</span>" : (p && !p.cerrado ? '<button class="btn sm" data-act="to-rec" data-v="' + s.cid + '">' + ic("funnel") + "Enviar a Reclutador</button>" : "");
+    return '<div class="cdh"><div><b>' + esc(s.nombre) + "</b><small>" + esc(s.cargo) + " · " + (s.ciudad ? esc(s.ciudad) : "Sin ciudad registrada") + " · " + fmtAnios(s.anios) + '</small></div><button class="btn primary sm" data-act="open" data-v="' + s.cid + '">' + ic("eye") + "Ver ficha y CV</button></div>" +
+      (rec ? '<div class="recrow">' + rec + "</div>" : "") +
+      '<details class="why"><summary>Por qué calza · cumple ' + s.ok.length + " de " + tot + '<span class="big">' + s.pct + '%</span><span class="chev">' + ic("chev") + '</span></summary><div class="crits">' + filas + "</div>" +
+      (s.pend.length ? '<div class="actions2"><button class="btn sm" data-act="cmp-pedir" data-v="' + s.cid + '">' + ic("send") + "Pedir el dato que falta</button></div>" : "") +
+      '<p class="note">Es una sugerencia calculada con la oferta: decides tú. No usa edad, sexo ni datos protegidos.</p></details>';
+  }
+  function cmpFila(s) {
+    var f = s.fail.length;
+    return '<div class="frow"><button class="rmain" data-act="open" data-v="' + s.cid + '"><span class="avatar" aria-hidden="true">' + iniciales(s.nombre) + '</span><span class="txt"><span class="nm">' + esc(s.nombre) + '</span><span class="rl">' + esc(s.cargo) + '</span><span class="meta">' + (s.ciudad ? esc(s.ciudad) : "Sin ciudad registrada") + " · " + fmtAnios(s.anios) +
+      '</span><span class="tags"><span class="tag ' + (f ? "vet" : "rev") + '">Calce ' + s.pct + "%</span>" + semS(s.sem) + (f ? '<span class="tag vet">No cumple lo excluyente</span>' : (s.pend.length ? '<span class="tag con">Por confirmar</span>' : "")) + "</span></span></button></div>";
+  }
+
+  /* Miniatura de la oferta original: la foto si la subieron; si no, una hoja dibujada. Al pasar el mouse se ve en grande. */
+  function miniOferta(p) {
+    var mini = p.thumb ? '<img class="othumb" src="' + p.thumb + '" alt="">' : '<span class="opaper" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+    var pop = p.thumb ? '<img src="' + p.thumb + '" alt="">' : paperHtml(p);
+    return '<span class="othwrap" data-act="off-ver" role="button" aria-label="Ver la oferta original">' + mini + '<span class="opop" aria-hidden="true">' + pop + "</span></span>";
+  }
+  function pieProceso(p) { return cierreBar(p, "cmp"); }
+  function vistaComparador() {
+    var cm = S.cmp, p = procActual();
+    if (cm.leyendo) return '<div class="page"><div class="toolbar"><h1>Comparador</h1></div><div class="card readcard" role="status" aria-live="polite"><div class="spin" aria-hidden="true"></div><div><b>Leyendo la oferta…</b><p class="sub">Detectando lo excluyente y lo deseable.</p></div></div></div>';
+    if (!p) {
+      return '<div class="page"><div class="toolbar"><h1>Nuevo proceso</h1></div>' +
+        '<div class="card"><h2>Sube la oferta y encuentra a los mejores</h2><p class="sub">El asistente lee la oferta, separa lo excluyente de lo deseable y ordena a los candidatos según cuánto calzan. El proceso queda guardado con su fecha.</p>' +
+        '<div class="offdrop"><button class="btn primary" data-act="off-pick">' + ic("upload") + 'Subir foto o PDF de la oferta</button><input type="file" id="offIn" class="sr" accept="image/*,.pdf" tabindex="-1"></div>' +
+        '<form class="offform" data-form="offer"><label class="lab"><span>O pega el texto de la oferta</span><textarea class="field" id="offTxt" placeholder="Ej: Técnico en prevención de riesgos. Debe residir en La Serena, 2 años de experiencia. Deseable ISO 45001."></textarea></label><div><button class="btn primary" type="submit">' + ic("spark") + "Leer oferta</button></div></form></div>" +
+        '<div class="card"><h2>¿Quieres probar?</h2><p class="sub">Elige una oferta de ejemplo.</p><div class="opts list" style="margin-top:12px">' +
+        EJEMPLOS.map(function (e, i) { return '<button class="opt" data-act="off-example" data-v="' + i + '">' + ic("spark") + esc(e.titulo) + "</button>"; }).join("") + "</div></div>" +
+        '<p class="note">Demo: no se lee ninguna imagen de verdad ni se envía nada. En la versión real Claude lee la oferta una sola vez, guarda la foto o el PDF original y el orden se calcula sobre las fichas guardadas.</p></div>';
+    }
+    var ab = !p.cerrado, nExc = p.reqs.filter(function (r) { return r.m === EXC; }).length, nDes = p.reqs.length - nExc;
+    var top = p.rank.slice(0, 7); cm._top = top;
+    var pasan = p.rank.filter(function (s) { return !s.fail.length; }).length;
+    function chips(m) {
+      var l = p.reqs.filter(function (r) { return r.m === m; }).map(function (r) {
+        return ab ? '<span class="rq ' + m + '"><button class="l" data-act="req-toggle" data-v="' + esc(r.id) + '" aria-label="Pasar a ' + (m === EXC ? "deseable" : "excluyente") + ": " + esc(rqLabel(r)) + '">' + esc(rqLabel(r)) + '</button><button class="x" data-act="req-del" data-v="' + esc(r.id) + '" aria-label="Quitar ' + esc(rqLabel(r)) + '">' + ic("x") + "</button></span>"
+          : '<span class="rq ' + m + ' fix"><span class="l">' + esc(rqLabel(r)) + "</span></span>";
+      }).join("");
+      return l || '<span class="sub">Ninguno</span>';
+    }
+    var conf = (p.conflictos || []).length ? '<div class="note warn"><b>Diferencias con la oferta original</b><br>' + p.conflictos.map(esc).join("<br>") + "</div>" : "";
+    var cuerpo = '<div class="offbody">' + (p.nota ? '<p class="note">' + esc(p.nota) + "</p>" : "") +
+      '<div><button class="btn sm" data-act="off-ver">' + ic("file") + "Ver oferta original</button></div>" + conf +
+      '<h3 class="rqh">Excluyente<small>descarta a quien no lo cumple</small></h3><div class="rqs">' + chips(EXC) + "</div>" +
+      '<h3 class="rqh">Deseable<small>suma puntos y sube en el orden</small></h3><div class="rqs">' + chips(DES) + "</div>" +
+      (ab ? '<p class="sub">Toca un requisito para cambiarlo de grupo. La ✕ lo quita.</p><form class="refine" data-form="refine"><label class="sr" for="refIn">Afinar con el asistente</label><div class="ask-row"><input id="refIn" type="text" autocomplete="off" placeholder="Afinar: que viva en La Serena, ideal ISO 45001"><button class="btn primary" type="submit" aria-label="Afinar">' + ic("spark") + "</button></div></form>"
+        : '<p class="note">Proceso cerrado: los requisitos ya no se modifican.</p>') + "</div>";
+    var oferta = '<details class="card offcard"' + (cm.offOpen ? " open" : "") + "><summary>" + miniOferta(p) +
+      '<span class="offs"><small>Oferta ' + (ab ? "abierta" : "cerrada") + " · " + fechaCorta(p.creado) + "</small><b>" + esc(p.titulo) + "</b><small>" + nExc + " excluyente" + (nExc === 1 ? "" : "s") + " · " + nDes + " deseable" + (nDes === 1 ? "" : "s") + '</small></span><span class="chev">' + ic("chev") + "</span></summary>" + cuerpo + "</details>";
+    var rueda;
+    if (!p.reqs.length) rueda = '<section class="card"><div class="empty"><b>La oferta no tiene requisitos</b>Agrégalos con el asistente para ordenar a los candidatos.</div></section>';
+    else if (!p.rank.length) rueda = '<section class="card"><div class="empty"><b>No había candidatos</b>Sube currículos para poder compararlos.</div></section>';
+    else rueda = '<section class="card wcard" aria-label="Mejores candidatos"><div class="wh"><h2>Mejores candidatos</h2><span class="count">' + pasan + " de " + p.n + " cumplen</span></div>" +
+      '<div class="wheel" id="wheel" tabindex="0" role="group" aria-label="Mejores candidatos. Desliza o usa las flechas del teclado para girar.">' + top.map(wcard).join("") + "</div>" +
+      '<div class="wctl"><button class="wbtn" data-act="wheel-prev" aria-label="Candidato anterior">' + ic("chevl") + '</button><div class="wdots" id="wdots" aria-hidden="true"></div><button class="wbtn" data-act="wheel-next" aria-label="Candidato siguiente">' + ic("chevr") + "</button></div>" +
+      '<div class="cdet" id="cmpDetail" aria-live="polite"></div></section>' +
+      '<details class="card rankacc"><summary>Ranking completo <small>' + p.n + ' candidatos</small><span class="chev">' + ic("chev") + '</span></summary><div class="flist">' + p.rank.map(cmpFila).join("") + "</div></details>";
+    return '<div class="page"><div class="toolbar"><h1>Comparador</h1></div><div class="cmp">' + oferta + rueda + pieProceso(p) + "</div></div>";
+  }
+
+  /* Rueda: el candidato elegido va al frente; los demás quedan detrás, repartidos en un arco que gira. */
+  function posicionarRueda() {
+    var w = document.getElementById("wheel"); if (!w) return;
+    var cards = w.querySelectorAll(".wc"), n = cards.length, a = S.cmp.active, narrow = w.clientWidth < 600;
+    var R = narrow ? 250 : 340, step = narrow ? 18 : 15;
+    Array.prototype.forEach.call(cards, function (el, i) {
+      var d = ((i - a) % n + n) % n; if (d > n / 2) d -= n;
+      var ad = Math.abs(d), th = d * step * Math.PI / 180;
+      el.style.transform = "translate(-50%,0) translate(" + (R * Math.sin(th)).toFixed(1) + "px," + (R * (1 - Math.cos(th))).toFixed(1) + "px) rotate(" + (d * step * 0.55).toFixed(1) + "deg) scale(" + (1 - Math.min(ad, 3) * 0.09).toFixed(3) + ")";
+      el.style.zIndex = String(30 - ad * 3);
+      el.style.opacity = ad > 2 ? "0" : String(1 - ad * 0.3);
+      el.style.pointerEvents = ad > 2 ? "none" : "auto";
+      el.setAttribute("aria-current", d === 0 ? "true" : "false");
+      el.tabIndex = d === 0 ? 0 : -1;
+    });
+    var dots = document.getElementById("wdots"); if (dots) { var h = ""; for (var k = 0; k < n; k++) h += '<i class="' + (k === a ? "on" : "") + '"></i>'; dots.innerHTML = h; }
+    var det = document.getElementById("cmpDetail"); if (det && S.cmp._top[a]) det.innerHTML = detalleHtml(S.cmp._top[a]);
+  }
+  function montarRueda() {
+    var w = document.getElementById("wheel"); if (!w) return;
+    if (S.cmp.active >= S.cmp._top.length) S.cmp.active = 0;
+    posicionarRueda();
+    requestAnimationFrame(function () { requestAnimationFrame(function () { w.classList.add("ready"); }); });
+  }
+  function girar(dir) { var n = S.cmp._top.length; if (!n) return; S.cmp.active = (S.cmp.active + dir + n) % n; posicionarRueda(); }
+
+  /* Historial: menú de hamburguesa con todos los procesos guardados */
+  function drawerHtml() {
+    var items = S.cmp.procs.map(function (p) {
+      var cn = p.cerrado ? (p.concl && p.concl.cid ? "Contratado: " + (candPorId(p.concl.cid) || { nombre: "" }).nombre : "Sin contratación") : "";
+      return '<button class="hitem' + (p.id === S.cmp.cur ? " cur" : "") + '" data-act="hist-open-p" data-v="' + p.id + '"><span class="ht"><b>' + esc(p.titulo) + '</b><span class="tag ' + (p.cerrado ? "dat" : "rev") + '">' + (p.cerrado ? "Cerrado" : "Abierto") + "</span></span><small>" + fechaHora(p.creado) + "</small>" + (cn ? "<small>" + esc(cn) + "</small>" : "") + "</button>";
+    }).join("");
+    return '<div class="dh"><h2>Historial</h2><button class="icon-btn" data-act="hist-close" aria-label="Cerrar historial">' + ic("x") + '</button></div><button class="btn primary" data-act="hist-new">' + ic("plus") + 'Nuevo proceso de selección</button><div class="hlist">' + (items || '<p class="sub">Aún no hay procesos.</p>') + "</div>";
+  }
+  function drawer(abrir) {
+    S.drawer = abrir;
+    var d = document.getElementById("drawer"), sc = document.getElementById("dscrim");
+    if (abrir) { d.innerHTML = drawerHtml(); }
+    d.classList.toggle("open", abrir); sc.classList.toggle("show", abrir); d.setAttribute("aria-hidden", String(!abrir));
+    if (abrir) { var b = d.querySelector("button.btn"); if (b) b.focus({ preventScroll: true }); }
   }
 
   function sw(id, titulo, sub, checked, locked) {
@@ -1153,18 +2115,24 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
   }
 
   function navHtml() {
-    function it(act, v, icono, label, cur) { return '<button class="tab-item" data-act="' + act + '" data-v="' + v + '"' + (cur ? ' aria-current="page"' : "") + ">" + ic(icono) + "<span>" + label + "</span></button>"; }
-    return it("home", "", "home", "Inicio", S.view === "home") + it("go-estado", "", "user", "Candidatos", S.view === "results" || S.view === "detail") +
-      it("go-cargar", "", "upload", "Cargar", S.view === "upload") + it("go-config", "", "sliders", "Ajustes", S.view === "settings");
+    function it(act, v, icono, label, cur, main) { return '<button class="tab-item' + (main ? " big" : "") + '" data-act="' + act + '" data-v="' + v + '"' + (cur ? ' aria-current="page"' : "") + ">" + ic(icono) + "<span>" + label + "</span></button>"; }
+    var det = S.view === "detail";
+    return it("go-estado", "", "user", "Candidatos", S.view === "results" || (det && S.from !== "compare" && S.from !== "home")) +
+      it("home", "", "funnel", "Reclutador", S.view === "home" || (det && S.from === "home"), true) +
+      it("go-compare", "", "compare", "Comparador", S.view === "compare" || (det && S.from === "compare"), true) +
+      it("go-cargar", "", "upload", "Cargar", S.view === "upload");
   }
 
   function render(foco) {
-    var h = S.view === "home" ? vistaInicio() : S.view === "results" ? vistaResultados() : S.view === "detail" ? vistaFicha() : S.view === "upload" ? vistaCargar() : vistaConfig();
+    var h = S.view === "home" ? vistaInicio() : S.view === "results" ? vistaResultados() : S.view === "detail" ? vistaFicha() : S.view === "upload" ? vistaCargar() : S.view === "compare" ? vistaComparador() : vistaConfig();
     $main.innerHTML = h;
     $side.innerHTML = navHtml();
+    var sb = document.getElementById("setBtn"); if (sb) { sb.classList.toggle("on", S.view === "settings"); if (S.view === "settings") sb.setAttribute("aria-current", "page"); else sb.removeAttribute("aria-current"); }
     if (S.view === "home") S.entered = true;
     if (foco) { window.scrollTo(0, 0); var t = $main.querySelector("h1"); if (t) { t.tabIndex = -1; t.focus({ preventScroll: true }); } }
     var d = document.getElementById("drop"); if (d) bindDrop(d);
+    if (S.view === "compare") montarRueda();
+    var dr = document.getElementById("drawer"); if (dr && S.drawer) dr.innerHTML = drawerHtml();
   }
   function ir(view, foco) { S.view = view; S.confirmDel = false; closeMenu(); render(foco !== false); }
 
@@ -1313,17 +2281,23 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
     document.getElementById("fileIn").addEventListener("change", function (e) { agregarArchivos(Array.prototype.slice.call(e.target.files).map(function (f) { return { n: f.name, txt: /\.txt$/i.test(f.name) ? f.size : null }; })); e.target.value = ""; });
   }
   /* Progreso simulado. CONECTAR AL SERVIDOR: aquí se subiría cada archivo. */
-  function agregarArchivos(nombres) {
-    if (!nombres.length) return;
-    nombres.forEach(function (it) {
-      var a = { n: it.n, txt: it.txt, p: 0 }; ARCHIVOS.push(a);
+  function agregarArchivos(items) {
+    if (!items.length) return;
+    items.forEach(function (it) {
+      var a = { id: "a" + (++ARC_ID), n: it.n, txt: it.txt, p: 0, dudas: [] }; clasificarArchivo(a); ARCHIVOS.push(a);
       var t = setInterval(function () {
         a.p = Math.min(100, a.p + 8 + Math.random() * 14);
         if (a.p >= 100) clearInterval(t);
-        if (S.view === "upload") { var y = window.scrollY; render(false); window.scrollTo(0, y); }
+        var ae = document.activeElement, escribiendo = ae && ae.tagName === "INPUT" && ae.form && ae.form.dataset.form === "dq";
+        if (S.view === "upload" && !escribiendo) { var y = window.scrollY; render(false); window.scrollTo(0, y); }
       }, 260);
     });
     render(false);
+  }
+  function ofertaDesdeArchivo(nombre, fileObj) {
+    var ej = EJEMPLOS[hashS(nombre) % EJEMPLOS.length], th = null;
+    try { if (fileObj && fileObj.type && fileObj.type.indexOf("image/") === 0) th = URL.createObjectURL(fileObj); } catch (err) { th = null; }
+    leerOferta({ titulo: ej.titulo, reqs: ej.reqs, texto: ej.texto || null, thumb: th, nota: "Demo: la oferta «" + nombre + "» no se lee de verdad; se muestran requisitos de ejemplo. En la versión real Claude lee la imagen y la guarda como respaldo del proceso." });
   }
 
   function copiar(txt, btn) {
@@ -1357,7 +2331,7 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
       case "rm-q": delete S.f.q[v]; if (S.f.m) delete S.f.m[v]; render(false); break;
       case "rm-ask": S.f.ask = null; render(false); break;
       case "open": S.sel = v; S.tab = "ficha"; S.confirmDel = false; S.from = S.view; ir("detail"); break;
-      case "back": ir("results"); break;
+      case "back": ir(S.from === "compare" ? "compare" : S.from === "home" ? "home" : "results"); break;
       case "tab": S.tab = v; render(false); break;
       case "copy": copiar(v, b); break;
       case "guardar": c = candidatoSel(); c.estado = c.estado === "guardado" ? "revisar" : "guardado"; render(false); aviso(c.estado === "guardado" ? "Guardado para después." : "Quitado de guardados."); break;
@@ -1368,6 +2342,44 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
       case "del-ask": S.confirmDel = true; render(false); var ds = document.querySelector('[data-act="del-cancel"]'); if (ds) ds.focus(); break;
       case "del-cancel": S.confirmDel = false; render(false); break;
       case "del-ok": c = candidatoSel(); CANDIDATOS.splice(CANDIDATOS.indexOf(c), 1); S.sel = null; S.confirmDel = false; ir("results"); aviso(c.nombre + " fue eliminado."); break;
+      case "go-compare": ir("compare"); break;
+      case "hist-open": drawer(true); break;
+      case "hist-close": drawer(false); break;
+      case "hist-open-p": var hp = S.cmp.procs.filter(function (x) { return x.id === v; })[0]; drawer(false); if (hp) hojaProceso(hp); break;
+      case "hist-new": if (S.drawer) drawer(false); hojaNuevo(); break;
+      case "rec-add": var pa = procActual(); if (pa && !pa.cerrado) hojaAgregarCand(pa); break;
+      case "proc-log": var pl = procActual(); if (pl) hojaRegistro(pl); break;
+      case "off-pick": document.getElementById("offIn").click(); break;
+      case "off-example": var ex = EJEMPLOS[parseInt(v, 10)]; leerOferta({ titulo: ex.titulo, reqs: ex.reqs, texto: ex.texto || null, nota: "" }); break;
+      case "req-toggle": var p1 = procActual(); if (!p1 || p1.cerrado) break; p1.reqs.forEach(function (r) { if (r.id === v) r.m = r.m === EXC ? DES : EXC; }); cambioReqs(p1); break;
+      case "req-del": var p2 = procActual(); if (!p2 || p2.cerrado) break; p2.reqs = p2.reqs.filter(function (r) { return r.id !== v; }); cambioReqs(p2); break;
+      case "proc-cerrar": var p3 = procActual(); if (p3 && !p3.cerrado) hojaCerrar(p3); break;
+      case "proc-reabrir": var p6 = procActual(); if (p6 && p6.cerrado) hojaReabrir(p6); break;
+      case "off-ver": e.preventDefault(); var p7 = procActual(); if (p7) hojaOferta(p7); break;
+      case "to-rec": var p8 = procActual(); if (!p8 || p8.cerrado) break; if (!p8.seg[v]) { p8.seg[v] = { e: "pend" }; logP(p8, candPorId(v).nombre + ": enviado a Reclutador."); guardarProcs(); posicionarRueda(); aviso("Enviado a Reclutador: quedó en Pendientes."); } break;
+      case "rec-est": S.rec.est = v; render(false); break;
+      case "rec-dia": S.rec.dia = v; render(false); break;
+      case "seg-av": var p9 = procActual(); if (p9) avanzarSeg(p9, v); break;
+      case "seg-reag": var p10 = procActual(); if (p10 && !p10.cerrado) hojaAgendar(p10, v); break;
+      case "seg-react": var p11 = procActual(); if (p11) reactivarSeg(p11, v); break;
+      case "seg-desc": var p12 = procActual(); if (p12 && !p12.cerrado) hojaSalida(p12, v, "desc"); break;
+      case "seg-decl": var p13 = procActual(); if (p13 && !p13.cerrado) hojaSalida(p13, v, "decl"); break;
+      case "hero-toggle": S.heroC = !S.heroC; render(false); break;
+      case "letra": var le = document.getElementById("L-" + v); if (le) le.scrollIntoView({ behavior: "smooth", block: "start" }); break;
+      case "dq-opt": var dp = v.split("|"), da = ARCHIVOS.filter(function (x) { return x.id === dp[0]; })[0]; if (!da) break;
+        var dd = da.dudas.filter(function (x) { return x.id === dp[1]; })[0], di = parseInt(dp[2], 10); if (!dd) break; dd.r = dd.opts[di];
+        if (dd.id === "of" && di === 0) { S.view = "compare"; ofertaDesdeArchivo(da.n, null); break; }
+        if (dd.id === "dup") dd.r = di === 0 ? "Listo: actualicé la ficha que ya existía." : "Listo: la guardé como una persona nueva.";
+        if (dd.id === "of") dd.r = "Archivo ignorado.";
+        render(false); break;
+      case "dq-skip": var sp = v.split("|"), sa = ARCHIVOS.filter(function (x) { return x.id === sp[0]; })[0]; if (!sa) break;
+        var sd = sa.dudas.filter(function (x) { return x.id === sp[1]; })[0]; if (sd) sd.r = "Quedó sin dato: aparecerá en «Falta dato»."; render(false); break;
+      case "proc-reeval": var p4 = procActual(); if (!p4) break; var q4 = nuevoProceso({ titulo: p4.titulo.replace(/ \(re-evaluado\)$/, "") + " (re-evaluado)", reqs: p4.reqs, texto: p4.texto }); S.cmp.procs.unshift(q4); S.cmp.cur = q4.id; S.cmp.active = 0; S.cmp.offOpen = false; guardarProcs(); render(false); aviso("Proceso nuevo con los CV de hoy. El anterior queda intacto."); break;
+      case "proc-csv": var p5 = procActual(); if (p5) descargarCsv(p5); break;
+      case "wheel-prev": girar(-1); break;
+      case "wheel-next": girar(1); break;
+      case "wheel-card": if (arrastro) { arrastro = false; break; } var wi = parseInt(v, 10); if (wi === S.cmp.active) { S.sel = S.cmp._top[wi].cid; S.tab = "ficha"; S.confirmDel = false; S.from = "compare"; ir("detail"); } else { S.cmp.active = wi; posicionarRueda(); } break;
+      case "cmp-pedir": var cp = CANDIDATOS.filter(function (x) { return x.id === v; })[0]; if (cp) hojaMensaje(cp); break;
       case "pick": document.getElementById("fileIn").click(); break;
       case "save-demo": aviso("Demo: la clave no se guarda ni se envía a nadie."); break;
     }
@@ -1375,6 +2387,15 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
 
   document.addEventListener("submit", function (e) {
     var f = e.target.dataset.form; if (!f) return; e.preventDefault();
+    if (f === "q") return;
+    if (f === "newrec") { var nt = (document.getElementById("nrT").value || "").trim(); if (nt.length < 3) { aviso("Ponle un nombre al proceso."); return; } crearProcRec(nt); return; }
+    if (f === "dq") {
+      var kv = e.target.dataset.v.split("|"), xa = ARCHIVOS.filter(function (x) { return x.id === kv[0]; })[0], xd = xa && xa.dudas.filter(function (x) { return x.id === kv[1]; })[0];
+      var val = (e.target.querySelector("input").value || "").trim(); if (!val) { aviso("Escribe la respuesta o toca «Dejar sin dato»."); return; }
+      if (xd) { xd.r = "Anotado: " + val + "."; if (xd.id === "nom" && xa.res) xa.res.nombre = val; if (xd.id === "ciu" && xa.res) xa.res.ciudad = val; }
+      render(false); return;
+    }
+    if (f === "offer" || f === "refine") { enviarOferta(f); return; }
     if (f === "ask") {
       var txt = document.getElementById("askIn").value.trim();
       if (!txt) { aviso("Escribe una pregunta o toca una sugerencia."); return; }
@@ -1389,19 +2410,36 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
   });
   document.addEventListener("change", function (e) {
     var id = e.target.id || "";
+    if (id === "offIn") {
+      var fl = e.target.files[0];
+      if (fl) ofertaDesdeArchivo(fl.name, fl);
+      e.target.value = ""; return;
+    }
     if (id.indexOf("f-") === 0) { var k = id.slice(2); if (e.target.checked) { if (S.chips.indexOf(k) === -1) S.chips.push(k); } else { S.chips = S.chips.filter(function (x) { return x !== k; }); delete S.f.q[k]; if (S.f.m) delete S.f.m[k]; } }
     if (id === "c-correo") S.canales.correo = e.target.checked;
     if (id === "c-whatsapp") S.canales.whatsapp = e.target.checked;
     if (id === "c-linkedin") S.canales.linkedin = e.target.checked;
   });
+  document.addEventListener("input", function (e) {
+    if (e.target && e.target.id === "qIn") { S.busca = e.target.value; refrescarLista(); }
+  });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") { if (document.getElementById("ov")) cerrarHoja(); else closeMenu(); }
+    if ((e.key === "ArrowLeft" || e.key === "ArrowRight") && document.activeElement && document.activeElement.closest && document.activeElement.closest("#wheel")) { girar(e.key === "ArrowRight" ? 1 : -1); e.preventDefault(); return; }
+    if (e.key === "Escape") { if (document.getElementById("ov")) cerrarHoja(); else if (S.drawer) drawer(false); else closeMenu(); }
     if (e.key === "Tab" && document.getElementById("ov")) {
       var sh = document.querySelector(".sheet"), els = Array.prototype.slice.call(sh.querySelectorAll("button:not([disabled]), textarea, input, select")); if (!els.length) return;
       var first = els[0], last = els[els.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
+
+  /* Rueda: deslizar con el dedo o el mouse gira; un toque en la tarjeta de atrás la trae al frente */
+  var ptr = null, arrastro = false;
+  document.addEventListener("pointerdown", function (e) { arrastro = false; ptr = (e.target.closest && e.target.closest("#wheel")) ? { x: e.clientX } : null; });
+  document.addEventListener("pointerup", function (e) { if (!ptr) return; var dx = e.clientX - ptr.x; ptr = null; if (Math.abs(dx) > 10) arrastro = true; if (dx < -40) girar(1); else if (dx > 40) girar(-1); });
+  document.addEventListener("pointercancel", function () { ptr = null; });
+  document.addEventListener("toggle", function (e) { if (e.target && e.target.classList && e.target.classList.contains("offcard")) S.cmp.offOpen = e.target.open; }, true);
+  window.addEventListener("resize", function () { if (S.view === "compare") posicionarRueda(); });
 
   /* Tema claro/oscuro: respeta el del sistema hasta que la persona elige */
   function temaActual() { var t = document.documentElement.getAttribute("data-theme"); return t || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); }
@@ -1414,6 +2452,7 @@ textarea.field { min-height: 120px; resize: vertical; line-height: 1.5; }
   try { var g = localStorage.getItem("gladibu-tema"); if (g === "dark" || g === "light") document.documentElement.setAttribute("data-theme", g); } catch (err) { /* ignorar */ }
   window.matchMedia("(min-width: 1100px)").addEventListener("change", closeMenu);
 
+  cargarProcs();
   pintarTema();
   render(false);
 })();
